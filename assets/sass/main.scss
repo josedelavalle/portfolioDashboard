@@ -1,0 +1,42 @@
+//Jose DeLavalle - Portfolio Dashboard - 2017
+$light-grey: #ddd;
+$main-color: #ccc;
+$alt-color: rgba(100,100,0,0.6);
+$text-color: #652415;
+body {
+	font-family: 'Open Sans', sans-serif;
+	color: $text-color;
+	z-index: 1;
+}
+.page {
+	background: $main-color;
+	height: 100vh;
+	color: $text-color;
+}
+
+.menu {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	padding: 0 10px;
+	min-height: 80px;
+	background: $light-grey;
+	transform: height 200 ease-in-out;
+}
+
+.progressIndicator {
+	z-index: 3;
+	.md-container {
+		background-color: $alt-color;
+		.md-bar {
+			background-color: $text-color;	
+		}
+	}
+}
+.switch {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 2;
+	outline: none;
+}

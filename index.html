@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="./assets/css/main.css">
+	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+<body ng-app="app">
+	<div class="page" ng-controller="portfolioDashboardController as vm">
+		<div class="switch" ng-init="toggled=true" ng-click="toggled=!toggled">
+			<i ng-show="toggled" class="fa fa-toggle-on fa-4x"></i>
+			<i ng-show="!toggled" class="fa fa-toggle-off fa-4x"></i>
+		</div>
+		<md-progress-linear class="progressIndicator" md-mode="determinate" value="{{vm.determinateValue}}"></md-progress-linear>
+		<div class="menu" ng-show="toggled">
+			
+
+			<h1>Portfolio Dashboard</h1>
+		</div>
+	</div>
+
+	
+	<script src="./node_modules/angular/angular.min.js"></script>
+	<script src="./node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="./node_modules/angular-aria/angular-aria.js"></script>
+    <script src="./node_modules/angular-material/angular-material.min.js"></script>
+     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+    
+	<script src="./node_modules/angular-route/angular-route.min.js"></script>
+	<script src="./node_modules/angular-resource/angular-resource.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
+	<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.2.0.js"></script>
+	<script src="./node_modules/chart.js/dist/Chart.min.js"></script>
+	<script src="./node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+
+	<script src="./node_modules/ngmap/build/scripts/ng-map.min.js"></script>
+
+	<script src="./assets/js/app.js"></script>
+</body>
+</html>
