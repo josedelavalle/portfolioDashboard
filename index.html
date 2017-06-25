@@ -33,6 +33,13 @@
 			    <h1 class="margin-top-10">
 				<i ng-click="initTiles()" class="hidden margin-left-10 fa fa-refresh
 				"></i>
+
+				<h5>{{userLocation.address}}
+					<span ng-if="userLocation.temperature">
+	                    <img class="weathericon" height="20" ng-src="http://openweathermap.org/img/w/{{userLocation.icon}}.png" />
+	                    {{userLocation.temperature}} &deg;{{userLocation.weatherUnit}}
+	                </span>
+				</h5>
 				</h1>
 				<md-slider-container>
 			      <span></span>
@@ -57,54 +64,59 @@
 				</div>
 			</div>
 		</div>
-		<md-grid-list
-	        md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
-	        md-row-height-gt-md="1:1" md-row-height="2:2"
-	        md-gutter="12px" md-gutter-gt-sm="10px" >
+		<div id="main" ng-if="showmain">
+			<md-grid-list
+		        md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
+		        md-row-height-gt-md="1:1" md-row-height="2:2"
+		        md-gutter="12px" md-gutter-gt-sm="10px" >
 
-		    
+			    
 
-		    
-		    <md-grid-tile ng-repeat="tile in tiles" class="bg{{colorSet}}-{{tile.id % 5}}"
-		        md-rowspan="{{tile.rowspan}}" md-colspan="{{tile.colspan}}">
-		        <i class="top-left fa fa-check fa-3x"></i>
+			    
+			    <md-grid-tile ng-repeat="tile in tiles" class="bg{{colorSet}}-{{tile.id % 5}}"
+			        md-rowspan="{{tile.rowspan}}" md-colspan="{{tile.colspan}}">
+			        <i class="top-left fa fa-check fa-3x"></i>
 
-		        <h2 ng-if="tile.id==1">
-		        	<div class="col-xs-12 centered">
-                                <i ng-if="!isGoing" class="fa fa-play fa-2x" ng-click="start()"></i>
-                                <i ng-if="isGoing" class="fa fa-pause fa-2x" ng-click="stop()"></i>
-                            </div>
-		        </h2>
-		        <div ng-if="tile.id==2">
-					{{clock}}
-		        </div>
-		        <div ng-if="tile.id==3s">
+			        <h2 ng-if="tile.id==1">
+			        	<div class="col-xs-12 centered">
+	                                <i ng-if="!isGoing" class="fa fa-play fa-2x" ng-click="start()"></i>
+	                                <i ng-if="isGoing" class="fa fa-pause fa-2x" ng-click="stop()"></i>
+	                            </div>
+			        </h2>
+			        <div ng-if="tile.id==2">
+						{{clock}}
+			        </div>
+			        <div ng-if="tile.id==3">
 
-		        </div>
-		        <div ng-if="tile.id==4">
-					<div ng-hide="$parent.dataSet!=1">
-						<iframe class="iframe" src="http://ngpopulation.josedelavalle.com"></iframe>
-					</div>
-					<div ng-hide="$parent.dataSet!=2">
-						<iframe class="iframe" src="http://ngnews.josedelavalle.com"></iframe>
-					</div>
-					<div ng-hide="$parent.dataSet!=3">
-						<iframe class="iframe" src="http://nggallery.josedelavalle.com"></iframe>
-					</div>
-					<div ng-hide="$parent.dataSet!=4">
-						<iframe class="iframe" src="http://ngstates.josedelavalle.com"></iframe>
-					</div>
-					<div ng-hide="$parent.dataSet!=5">
-						<iframe class="iframe" src="http://temp.josedelavalle.com"></iframe>
-					</div>
-		        </div>
+			        </div>
+			        <div ng-if="tile.id==4">
+						<div ng-hide="$parent.dataSet!=1">
+							<iframe class="iframe" src="http://ngpopulation.josedelavalle.com"></iframe>
+						</div>
+						<div ng-hide="$parent.dataSet!=2">
+							<iframe class="iframe" src="http://ngnews.josedelavalle.com"></iframe>
+						</div>
+						<div ng-hide="$parent.dataSet!=3">
+							<iframe class="iframe" src="http://nggallery.josedelavalle.com"></iframe>
+						</div>
+						<div ng-hide="$parent.dataSet!=4">
+							<iframe class="iframe" src="http://ngstates.josedelavalle.com"></iframe>
+						</div>
+						<div ng-hide="$parent.dataSet!=5">
+							<iframe class="iframe" src="http://slickwebstudio.com"></iframe>
+						</div>
+			        </div>
+			        <div ng-if="tile.id==3">
+						<iframe class="iframe" src="http://josedelavalle.com#contact"></iframe>
+			        </div>
 
-		      <md-grid-tile-footer ng-hide="tile.id==4">
-		        <h3>{{tile.id}} - {{tile.footer}}</h3>
-		      </md-grid-tile-footer>
-		    </md-grid-tile>
+			      <md-grid-tile-footer ng-hide="tile.id==4">
+			        <h3>{{tile.id}} - {{tile.footer}}</h3>
+			      </md-grid-tile-footer>
+			    </md-grid-tile>
 
-	  	</md-grid-list>
+		  	</md-grid-list>
+	  	</div>
 	</div>
 
 	
