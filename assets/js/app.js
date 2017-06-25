@@ -24,7 +24,7 @@ function portfolioDashboardController($scope, $interval, $timeout, $mdMedia, $md
 	var self = this, j= 0, counter = 0;
 	$scope.colorSet = 1;
 	$scope.maxColorSets = 5;
-	$scope.dataSet = 3;
+	$scope.dataSet = 1;
 	console.log('portfolio dashboard controller', Date());
 
 
@@ -68,40 +68,39 @@ function portfolioDashboardController($scope, $interval, $timeout, $mdMedia, $md
 	$scope.setColor = function(i) {
 		$scope.colorSet = i;
 	}
-	var defaultTiles= [[{ id: 1, title: '0', body1: 'Jose DeLavalle', rowspan: 1, colspan: 2 },
-						{ id: 2, title: '1', body2: 'hello', rowspan: 2, colspan: 1 },
-						{ id: 3, title: '2', body3: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 4, title: '3', body4: 'hello', rowspan: 2, colspan: 2 },
-						{ id: 5, title: '4', body5: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 6, title: '0', body6: 'hello', rowspan: 1, colspan: 2 }],
+	var defaultTiles= [[{ id: 1, title: '0', footer: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
+						{ id: 4, title: '1', footer: 'hello', rowspan: 2, colspan: 3 },
+						{ id: 3, title: '2', footer: 'hello', rowspan: 2, colspan: 1 },
+						{ id: 2, title: '3', footer: 'hello', rowspan: 1, colspan: 2 },
+						{ id: 5, title: '4', footer: 'hello', rowspan: 1, colspan: 1 }],
 						[{ id: 1, title: '0', body1: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
-						{ id: 2, title: '1', body2: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 3, title: '2', body3: 'hello', rowspan: 1, colspan: 2 },
-						{ id: 4, title: '3', body4: 'hello', rowspan: 2, colspan: 2 },
-						{ id: 5, title: '4', body5: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 6, title: '0', body6: 'hello', rowspan: 2, colspan: 1 },
-						{ id: 7, title: '1', body6: 'hello', rowspan: 1, colspan: 1 }],
-						[{ id: 1, title: '0', body1: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
-						{ id: 2, title: '1', body2: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 3, title: '2', body3: 'hello', rowspan: 1, colspan: 2 },
-						{ id: 4, title: '3', body4: 'hello', rowspan: 2, colspan: 2 },
-						{ id: 5, title: '4', body5: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 6, title: '0', body6: 'hello', rowspan: 2, colspan: 1 },
-						{ id: 7, title: '1', body6: 'hello', rowspan: 1, colspan: 1 }],
-						[{ id: 1, title: '0', body1: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
-						{ id: 2, title: '1', body2: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 3, title: '2', body3: 'hello', rowspan: 1, colspan: 2 },
-						{ id: 4, title: '3', body4: 'hello', rowspan: 2, colspan: 2 },
-						{ id: 5, title: '4', body5: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 6, title: '0', body6: 'hello', rowspan: 2, colspan: 1 },
-						{ id: 7, title: '1', body6: 'hello', rowspan: 1, colspan: 1 }],
-						[{ id: 1, title: '0', body1: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
-						{ id: 2, title: '1', body2: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 3, title: '2', body3: 'hello', rowspan: 1, colspan: 2 },
-						{ id: 4, title: '3', body4: 'hello', rowspan: 2, colspan: 2 },
-						{ id: 5, title: '4', body5: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 6, title: '0', body6: 'hello', rowspan: 2, colspan: 1 },
-						{ id: 7, title: '1', body6: 'hello', rowspan: 1, colspan: 1 }]
+						{ id: 2, title: '1', footer: 'hello', rowspan: 1, colspan: 1 },
+						{ id: 3, title: '2', footer: 'hello', rowspan: 1, colspan: 2 },
+						{ id: 4, title: '3', footer: 'hello', rowspan: 2, colspan: 2 },
+						{ id: 5, title: '4', footer: 'hello', rowspan: 1, colspan: 1 },
+						{ id: 6, title: '0', footer: 'hello', rowspan: 2, colspan: 1 },
+						{ id: 7, title: '1', footer: 'hello', rowspan: 1, colspan: 1 }],
+						[{ id: 1, title: '0', footer: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
+						{ id: 2, title: '1', footer: 'hello', rowspan: 1, colspan: 1 },
+						{ id: 3, title: '2', footer: 'hello', rowspan: 1, colspan: 2 },
+						{ id: 4, title: '3', footer: 'hello', rowspan: 2, colspan: 2 },
+						{ id: 5, title: '4', footer: 'hello', rowspan: 1, colspan: 1 },
+						{ id: 6, title: '0', footer: 'hello', rowspan: 2, colspan: 1 },
+						{ id: 7, title: '1', footer: 'hello', rowspan: 1, colspan: 1 }],
+						[{ id: 1, title: '0', footer: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
+						{ id: 2, title: '1', footer: 'hello', rowspan: 1, colspan: 1 },
+						{ id: 3, title: '2', footer: 'hello', rowspan: 1, colspan: 2 },
+						{ id: 4, title: '3', footer: 'hello', rowspan: 2, colspan: 2 },
+						{ id: 5, title: '4', footer: 'hello', rowspan: 1, colspan: 1 },
+						{ id: 6, title: '0', footer: 'hello', rowspan: 2, colspan: 1 },
+						{ id: 7, title: '1', footer: 'hello', rowspan: 1, colspan: 1 }],
+						[{ id: 1, title: '0', footer: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
+						{ id: 2, title: '1', footer: 'hello', rowspan: 1, colspan: 1 },
+						{ id: 3, title: '2', footer: 'hello', rowspan: 1, colspan: 2 },
+						{ id: 4, title: '3', footer: 'hello', rowspan: 2, colspan: 2 },
+						{ id: 5, title: '4', footer: 'hello', rowspan: 1, colspan: 1 },
+						{ id: 6, title: '0', footer: 'hello', rowspan: 2, colspan: 1 },
+						{ id: 7, title: '1', footer: 'hello', rowspan: 1, colspan: 1 }]
 
 						];
 				   
@@ -151,29 +150,40 @@ function portfolioDashboardController($scope, $interval, $timeout, $mdMedia, $md
         }
     };
 
-    $interval(function() {
-      self.determinateValue += 1;
-      self.determinateValue2 += 1.5;
+    
+    var timeoutLength = 5000;
+    $scope.start = function () {
+        promise = $interval(function () {
 
-      if (self.determinateValue > 100) self.determinateValue = 30;
-      if (self.determinateValue2 > 100) self.determinateValue2 = 30;
+            self.determinateValue += 1;
 
-        // Incrementally start animation the five (5) Indeterminate,
-        // themed progress circular bars
 
-        if ( (j < 2) && !self.showList[j] && self.activated ) {
-          self.showList[j] = true;
-        }
-        if ( counter++ % 4 === 0 ) j++;
+            if (self.determinateValue > 100) {
+                self.determinateValue = 0;
+                changeColors();
+            }
+            // Incrementally start animation the five (5) Indeterminate,
+            // themed progress circular bars
 
-        // Show the indicator in the "Used within Containers" after 200ms delay
-        if ( j == 2 ) self.contained = "indeterminate";
+            if ((j < 2) && !self.showList[j] && self.activated) {
+                self.showList[j] = true;
+            }
+            if (counter++ % 4 == 0) j++;
 
-    }, 100, 0, true);
+            // Show the indicator in the "Used within Containers" after 200ms delay
+            if (j == 2) self.contained = "indeterminate";
 
-    $interval(function() {
-      self.mode = (self.mode == 'query' ? 'determinate' : 'query');
-      //$scope.initTiles();
-      changeColors();
-    }, 7200, 0, true);
+        }, timeoutLength / 100, 0, true);
+        $scope.isGoing = true
+        $interval(function () {
+            self.mode = (self.mode == 'query' ? 'determinate' : 'query');
+        }, timeoutLength, 0, true);
+    }
+
+    $scope.stop = function () {
+        $scope.isGoing = false;
+        $interval.cancel(promise);
+    };
+    $scope.start();
+    
 }

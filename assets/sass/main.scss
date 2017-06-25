@@ -18,9 +18,15 @@ body {
 md-grid-list {
   margin: 8px;
 }
+.info {
+	font-size: 15px;
+}
 .iframe {
-	height: 600px;
-	width: 600px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
 }
 .top-left {
 	position: absolute;

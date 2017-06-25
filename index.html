@@ -24,15 +24,15 @@
 
 			  <div class="col-xs-4">
 				<h3 class="padding-top-5">
-				<span class="">Portfolio Dashboard</span>
+				<div class="">Portfolio Dashboard</div>
+				<div class="info">dataset: {{dataSet}}, colorset: {{colorSet}}
+				</div>
 				</h3>
 			  </div>
 			  <div class="col-xs-4 text-center">
 			    <h1 class="margin-top-10">
 				<i ng-click="initTiles()" class="hidden margin-left-10 fa fa-refresh
 				"></i>
-
-				dataset: {{dataSet}}, colorset: {{colorSet}}
 				</h1>
 				<md-slider-container>
 			      <span></span>
@@ -45,8 +45,8 @@
 			  <div class="col-xs-4 text-right">
 				<h3>
 				<span>{{ clock | date:'shortTime'}}</span>&nbsp;&nbsp;
-                <span>{{ clock | date:'EEE'}}</span>
-                <span>{{ clock | date:'dd MMM'}}</span>
+                <span class="hidden-sm hidden-xs">{{ clock | date:'EEE'}}</span>
+                <span class="hidden-sm hidden-xs">{{ clock | date:'dd MMM'}}</span>
 				</h3>
 			  </div>
 			</div>
@@ -65,12 +65,15 @@
 		    
 
 		    
-		    <md-grid-tile ng-repeat="tile in tiles" class="bg{{colorSet}}-{{$index % 5}}"
+		    <md-grid-tile ng-repeat="tile in tiles" class="bg{{colorSet}}-{{tile.id % 5}}"
 		        md-rowspan="{{tile.rowspan}}" md-colspan="{{tile.colspan}}">
 		        <i class="top-left fa fa-check fa-3x"></i>
 
-		        <h2 ng-if="$tile.id==1">
-		        {{tile['body'+($index +1)]}}
+		        <h2 ng-if="tile.id==1">
+		        	<div class="col-xs-12 centered">
+                                <i ng-if="!isGoing" class="fa fa-play fa-2x" ng-click="start()"></i>
+                                <i ng-if="isGoing" class="fa fa-pause fa-2x" ng-click="stop()"></i>
+                            </div>
 		        </h2>
 		        <div ng-if="tile.id==2">
 					{{clock}}
@@ -96,8 +99,8 @@
 					</div>
 		        </div>
 
-		      <md-grid-tile-footer>
-		        <h3>{{tile.id}}</h3>
+		      <md-grid-tile-footer ng-hide="tile.id==4">
+		        <h3>{{tile.id}} - {{tile.footer}}</h3>
 		      </md-grid-tile-footer>
 		    </md-grid-tile>
 
