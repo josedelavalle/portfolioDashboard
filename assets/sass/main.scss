@@ -1,4 +1,8 @@
 //Jose DeLavalle - Portfolio Dashboard - 2017
+@import 'libs/spacing';
+@import 'libs/animations';
+@import 'libs/colors';
+
 $light-grey: #ddd;
 $main-color: #ccc;
 $alt-color: rgba(100,100,0,0.6);
@@ -6,11 +10,51 @@ $text-color: #652415;
 body {
 	font-family: 'Open Sans', sans-serif;
 	color: $text-color;
-	z-index: 1;
+	z-index: 0;
+}
+* {
+	outline: none;
+}
+md-grid-list {
+  margin: 8px;
+}
+.iframe {
+	height: 600px;
+	width: 600px;
+}
+.top-left {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 10px 0 0 10px;
+}
+
+.fa-toggle-off {
+	//color: white;
+}
+md-grid-tile {
+    transition: all 400ms ease-out 50ms;
+	box-shadow: 0 0 2px 1px #555,
+				0 0 2px 1px #ddd;
+}
+
+#red-slider .md-thumb:after, #red-slider .md-track-fill{
+    background-color: $text-color !important;
+    border-color: $text-color !important;
+}
+#red-slider .md-focus-thumb, #red-slider .md-focus-ring{
+    background-color: $text-color;
+}
+
+.title {
+
+	font-family: "Open Sans";
+	font-size: 36px;
+	font-weight: 700;
 }
 .page {
 	background: $main-color;
-	height: 100vh;
+	height: 100%;
 	color: $text-color;
 }
 
@@ -19,9 +63,10 @@ body {
 	top: 0;
 	width: 100%;
 	padding: 0 10px;
-	min-height: 80px;
+	min-height: 100px;
+	max-height: 100px;
 	background: $light-grey;
-	transform: height 200 ease-in-out;
+	z-index: 1;
 }
 
 .progressIndicator {

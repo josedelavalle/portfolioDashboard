@@ -12,17 +12,96 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body ng-app="app">
-	<div class="page" ng-controller="portfolioDashboardController as vm">
+	<div class="page" ng-controller="portfolioDashboardController as vm" ng-cloak ng-class="{'padding-top-100' : toggled}">
 		<div class="switch" ng-init="toggled=true" ng-click="toggled=!toggled">
 			<i ng-show="toggled" class="fa fa-toggle-on fa-4x"></i>
 			<i ng-show="!toggled" class="fa fa-toggle-off fa-4x"></i>
 		</div>
-		<md-progress-linear class="progressIndicator" md-mode="determinate" value="{{vm.determinateValue}}"></md-progress-linear>
+		
 		<div class="menu" ng-show="toggled">
-			
+			<md-progress-linear class="progressIndicator" md-mode="determinate" value="{{vm.determinateValue}}"></md-progress-linear>
+			<div class="row margin-right-80">
 
-			<h1>Portfolio Dashboard</h1>
+			  <div class="col-xs-4">
+				<h3 class="padding-top-5">
+				<span class="">Portfolio Dashboard</span>
+				</h3>
+			  </div>
+			  <div class="col-xs-4 text-center">
+			    <h1 class="margin-top-10">
+				<i ng-click="initTiles()" class="hidden margin-left-10 fa fa-refresh
+				"></i>
+
+				dataset: {{dataSet}}, colorset: {{colorSet}}
+				</h1>
+				<md-slider-container>
+			      <span></span>
+			      <md-slider on-drag-end flex min="1" max="{{maxColorSets}}" ng-model="dataSet" ng-change="console.log('asdf')" aria-label="red"  id="red-slider">
+			      </md-slider>
+			      
+			    </md-slider-container>
+			  </div>	
+
+			  <div class="col-xs-4 text-right">
+				<h3>
+				<span>{{ clock | date:'shortTime'}}</span>&nbsp;&nbsp;
+                <span>{{ clock | date:'EEE'}}</span>
+                <span>{{ clock | date:'dd MMM'}}</span>
+				</h3>
+			  </div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					
+
+				</div>
+			</div>
 		</div>
+		<md-grid-list
+	        md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
+	        md-row-height-gt-md="1:1" md-row-height="2:2"
+	        md-gutter="12px" md-gutter-gt-sm="10px" >
+
+		    
+
+		    
+		    <md-grid-tile ng-repeat="tile in tiles" class="bg{{colorSet}}-{{$index % 5}}"
+		        md-rowspan="{{tile.rowspan}}" md-colspan="{{tile.colspan}}">
+		        <i class="top-left fa fa-check fa-3x"></i>
+
+		        <h2 ng-if="$tile.id==1">
+		        {{tile['body'+($index +1)]}}
+		        </h2>
+		        <div ng-if="tile.id==2">
+					{{clock}}
+		        </div>
+		        <div ng-if="tile.id==3s">
+
+		        </div>
+		        <div ng-if="tile.id==4">
+					<div ng-hide="$parent.dataSet!=1">
+						<iframe class="iframe" src="http://ngpopulation.josedelavalle.com"></iframe>
+					</div>
+					<div ng-hide="$parent.dataSet!=2">
+						<iframe class="iframe" src="http://ngnews.josedelavalle.com"></iframe>
+					</div>
+					<div ng-hide="$parent.dataSet!=3">
+						<iframe class="iframe" src="http://nggallery.josedelavalle.com"></iframe>
+					</div>
+					<div ng-hide="$parent.dataSet!=4">
+						<iframe class="iframe" src="http://ngstates.josedelavalle.com"></iframe>
+					</div>
+					<div ng-hide="$parent.dataSet!=5">
+						<iframe class="iframe" src="http://temp.josedelavalle.com"></iframe>
+					</div>
+		        </div>
+
+		      <md-grid-tile-footer>
+		        <h3>{{tile.id}}</h3>
+		      </md-grid-tile-footer>
+		    </md-grid-tile>
+
+	  	</md-grid-list>
 	</div>
 
 	
