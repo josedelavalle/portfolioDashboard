@@ -10,6 +10,9 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="./node_modules/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="./node_modules/slick-carousel/slick/slick-theme.css">
+
 </head>
 <body ng-app="app">
 	<div class="page" ng-controller="portfolioDashboardController as vm" ng-cloak ng-class="{'padding-top-100' : toggled}">
@@ -34,12 +37,12 @@
 				<i ng-click="initTiles()" class="hidden margin-left-10 fa fa-refresh
 				"></i>
 
-				<h5>{{userLocation.address}}
+				<h4 class="margin-bottom-0">{{userLocation.address}}
 					<span ng-if="userLocation.temperature">
-	                    <img class="weathericon" height="20" ng-src="http://openweathermap.org/img/w/{{userLocation.icon}}.png" />
+	                    <img class="weathericon" height="30" ng-src="http://openweathermap.org/img/w/{{userLocation.icon}}.png" />
 	                    {{userLocation.temperature}} &deg;{{userLocation.weatherUnit}}
 	                </span>
-				</h5>
+				</h4>
 				</h1>
 				<md-slider-container>
 			      <span></span>
@@ -86,9 +89,7 @@
 			        <div ng-if="tile.id==2">
 						{{clock}}
 			        </div>
-			        <div ng-if="tile.id==3">
-
-			        </div>
+			        
 			        <div ng-if="tile.id==4">
 						<div ng-hide="$parent.dataSet!=1">
 							<iframe class="iframe" src="http://ngpopulation.josedelavalle.com"></iframe>
@@ -106,12 +107,37 @@
 							<iframe class="iframe" src="http://slickwebstudio.com"></iframe>
 						</div>
 			        </div>
-			        <div ng-if="tile.id==3">
+			        <div ng-show="tile.id==3">
 						<iframe class="iframe" src="http://josedelavalle.com#contact"></iframe>
 			        </div>
-
+					<div ng-show="tile.id==5">
+						<div class="container-fluid carouselContainer">
+							<slick class="slick" autoplay=true infinite=true slides-to-show=1 slides-to-scroll=1>
+						    	<div>
+									<img title="AngularJs" alt="AngularJs" height="200" src="./assets/images/angular.png" />
+						    	</div>
+						    	<div>
+									<img title="CSS3" alt="CSS3" height="200" src="./assets/images/css3.png" />
+						    	</div>
+						    	<div>
+									<img title="HTML5" alt="HTML5" height="200" src="./assets/images/html5.png" />
+						    	</div>
+						    </slick>
+						</div>
+					</div>
 			      <md-grid-tile-footer ng-hide="tile.id==4">
-			        <h3>{{tile.id}} - {{tile.footer}}</h3>
+			      
+			      	<div ng-if="tile.id===3">
+						<div ng-show="$parent.dataSet==1">
+							<a href='http://josedelavalle.com' target="_blank"><h3 class="tile-link">{{tile.footer}}</h3></a>
+						</div>
+			        </div>
+			       <div ng-if="tile.id!==3">
+						
+							<h3>{{tile.id}} - {{tile.footer}}</h3>
+						
+			        </div>
+
 			      </md-grid-tile-footer>
 			    </md-grid-tile>
 
@@ -119,7 +145,7 @@
 	  	</div>
 	</div>
 
-	
+	<script src="./node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="./node_modules/angular/angular.min.js"></script>
 	<script src="./node_modules/angular-animate/angular-animate.min.js"></script>
     <script src="./node_modules/angular-aria/angular-aria.js"></script>
@@ -134,6 +160,8 @@
 	<script src="./node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
 
 	<script src="./node_modules/ngmap/build/scripts/ng-map.min.js"></script>
+	<script src="./node_modules/slick-carousel/slick/slick.js"></script>
+    <script src="./node_modules/angular-slick-carousel/dist/angular-slick.min.js"></script>
 
 	<script src="./assets/js/app.js"></script>
 </body>

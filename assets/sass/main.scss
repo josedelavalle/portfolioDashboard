@@ -11,12 +11,43 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	color: $text-color;
 	z-index: 0;
+	font-size: 18px;
 }
 * {
 	outline: none;
 }
 md-grid-list {
   margin: 8px;
+}
+.carouselContainer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: auto;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+}
+.slick {
+	width: 100%;
+	img {
+		width: 100%;
+		height: 100%;
+	}
+}
+.slick-prev:before,
+.slick-next:before {
+   display:none;
+}
+.tile-link {
+	color: white;
+	font-size: 1.5em !important;
+	text-decoration: none !important;
+	&:hover {
+		cursor: pointer;
+		text-decoration: none !important;
+	}
+
 }
 .info {
 	font-size: 15px;

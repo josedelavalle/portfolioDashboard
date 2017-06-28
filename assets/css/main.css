@@ -88,6 +88,12 @@
 .padding-0 {
   padding: 0 !important; }
 
+.padding-top-0 {
+  padding-top: 0; }
+
+.padding-bottom-0 {
+  padding-bottom: 0; }
+
 .padding-left-0 {
   padding-left: 0; }
 
@@ -389,6 +395,10 @@
   to {
     transform: translateX(100%); } }
 
+@keyframes slideOutDown {
+  to {
+    transform: translateY(100%); } }
+
 @keyframes rotateOutNewspaper {
   to {
     transform: translateZ(-3000px) rotateZ(360deg);
@@ -411,13 +421,13 @@
   to {
     transform: translateY(0); } }
 
-#main .ng-enter {
-  animation: slideInRight 0.6s both ease-in-out;
-  z-index: 8888; }
+@keyframes opacityDown {
+  to {
+    opacity: 0; } }
 
 #main .ng-leave {
-  animation: slideOutRight 0.3s both ease-in-out;
-  z-index: 8889; }
+  animation: opacityDown 0.25s both ease-in-out;
+  z-index: 10; }
 
 .bg1-0 {
   background: #222222;
@@ -531,13 +541,41 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: #652415;
-  z-index: 0; }
+  z-index: 0;
+  font-size: 18px; }
 
 * {
   outline: none; }
 
 md-grid-list {
   margin: 8px; }
+
+.carouselContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  height: 100%; }
+
+.slick {
+  width: 100%; }
+  .slick img {
+    width: 100%;
+    height: 100%; }
+
+.slick-prev:before,
+.slick-next:before {
+  display: none; }
+
+.tile-link {
+  color: white;
+  font-size: 1.5em !important;
+  text-decoration: none !important; }
+  .tile-link:hover {
+    cursor: pointer;
+    text-decoration: none !important; }
 
 .info {
   font-size: 15px; }

@@ -2,8 +2,8 @@ var app = angular.module('app', [
     'ngAnimate',
     'ngMap',
     'ngMaterial',
-        'material.svgAssetsCache'
-    
+    'material.svgAssetsCache',
+    'slickCarousel'
 ]);
 app.factory('pdFactory', ['$http', '$window', '$q', function ($http, $window, $q) {
     return {
@@ -65,7 +65,7 @@ function portfolioDashboardController($scope, $interval, $timeout, pdFactory, $m
 	var self = this, j= 0, counter = 0;
 	$scope.colorSet = 1;
 	$scope.maxColorSets = 5;
-	$scope.dataSet = 1;
+	$scope.dataSet = 4;
 	$scope.userLocation = {};
 	$scope.userCoords = null;
 	$scope.showmain = true;
@@ -178,35 +178,31 @@ function portfolioDashboardController($scope, $interval, $timeout, pdFactory, $m
 	}
 	var defaultTiles= [[{ id: 1, title: '0', footer: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
 						{ id: 4, title: '1', footer: 'hello', rowspan: 2, colspan: 3 },
-						{ id: 3, title: '2', footer: 'hello', rowspan: 2, colspan: 1 },
+						{ id: 3, title: '2', footer: 'Visit Full Site', rowspan: 2, colspan: 1 },
 						{ id: 2, title: '3', footer: 'hello', rowspan: 1, colspan: 2 },
-						{ id: 5, title: '4', footer: 'hello', rowspan: 1, colspan: 1 }],
+						{ id: 5, title: '4', footer: 'Technologies', rowspan: 1, colspan: 1 }],
 						[{ id: 1, title: '0', body1: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
-						{ id: 2, title: '1', footer: 'hello', rowspan: 1, colspan: 1 },
+						{ id: 2, title: '1', footer: 'hello1', rowspan: 1, colspan: 2 },
+						{ id: 3, title: '2', footer: 'hello2', rowspan: 2, colspan: 1 },
+						{ id: 4, title: '3', footer: 'hello3', rowspan: 2, colspan: 3 },
+						{ id: 5, title: '4', footer: 'Technologies', rowspan: 1, colspan: 1 }],
+						[{ id: 4, title: '1', footer: 'hello4', rowspan: 2, colspan: 3 },
+						{ id: 1, title: '4', footer: 'Color', rowspan: 1, colspan: 1 },
+						{ id: 5, title: '1', footer: 'hello5', rowspan: 1, colspan: 1 },
+						{ id: 3, title: '2', footer: 'hello6', rowspan: 1, colspan: 2 },
+						{ id: 6, title: '3', footer: 'hello7', rowspan: 1, colspan: 2 }],
+						[{ id: 1, title: '0', footer: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
+						{ id: 2, title: '1', footer: 'hello8', rowspan: 1, colspan: 1 },
 						{ id: 3, title: '2', footer: 'hello', rowspan: 1, colspan: 2 },
 						{ id: 4, title: '3', footer: 'hello', rowspan: 2, colspan: 2 },
-						{ id: 5, title: '4', footer: 'hello', rowspan: 1, colspan: 1 },
+						{ id: 5, title: '4', footer: 'Technologies', rowspan: 1, colspan: 1 },
 						{ id: 6, title: '0', footer: 'hello', rowspan: 2, colspan: 1 },
 						{ id: 7, title: '1', footer: 'hello', rowspan: 1, colspan: 1 }],
 						[{ id: 1, title: '0', footer: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
 						{ id: 2, title: '1', footer: 'hello', rowspan: 1, colspan: 1 },
 						{ id: 3, title: '2', footer: 'hello', rowspan: 1, colspan: 2 },
 						{ id: 4, title: '3', footer: 'hello', rowspan: 2, colspan: 2 },
-						{ id: 5, title: '4', footer: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 6, title: '0', footer: 'hello', rowspan: 2, colspan: 1 },
-						{ id: 7, title: '1', footer: 'hello', rowspan: 1, colspan: 1 }],
-						[{ id: 1, title: '0', footer: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
-						{ id: 2, title: '1', footer: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 3, title: '2', footer: 'hello', rowspan: 1, colspan: 2 },
-						{ id: 4, title: '3', footer: 'hello', rowspan: 2, colspan: 2 },
-						{ id: 5, title: '4', footer: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 6, title: '0', footer: 'hello', rowspan: 2, colspan: 1 },
-						{ id: 7, title: '1', footer: 'hello', rowspan: 1, colspan: 1 }],
-						[{ id: 1, title: '0', footer: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
-						{ id: 2, title: '1', footer: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 3, title: '2', footer: 'hello', rowspan: 1, colspan: 2 },
-						{ id: 4, title: '3', footer: 'hello', rowspan: 2, colspan: 2 },
-						{ id: 5, title: '4', footer: 'hello', rowspan: 1, colspan: 1 },
+						{ id: 5, title: '4', footer: 'Technologies', rowspan: 1, colspan: 1 },
 						{ id: 6, title: '0', footer: 'hello', rowspan: 2, colspan: 1 },
 						{ id: 7, title: '1', footer: 'hello', rowspan: 1, colspan: 1 }]
 
