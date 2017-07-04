@@ -25,14 +25,14 @@
 			<md-progress-linear class="progressIndicator" md-mode="determinate" value="{{vm.determinateValue}}"></md-progress-linear>
 			<div class="row margin-right-80">
 
-			  <div class="col-xs-4">
+			  <div class="hidden-sm hidden-xs col-md-4">
 				<h3 class="padding-top-5">
 				<div class="">Portfolio Dashboard</div>
 				<div class="info">dataset: {{dataSet}}, colorset: {{colorSet}}
 				</div>
 				</h3>
 			  </div>
-			  <div class="col-xs-4 text-center">
+			  <div class="col-xs-12 col-md-4 text-center">
 			    <h1 class="margin-top-10">
 				<i ng-click="initTiles()" class="hidden margin-left-10 fa fa-refresh
 				"></i>
@@ -52,7 +52,7 @@
 			    </md-slider-container>
 			  </div>	
 
-			  <div class="col-xs-4 text-right">
+			  <div class="col-md-4 hidden-sm hidden-xs text-right">
 				<h3>
 				<span>{{ clock | date:'shortTime'}}</span>&nbsp;&nbsp;
                 <span class="hidden-sm hidden-xs">{{ clock | date:'EEE'}}</span>
@@ -68,79 +68,101 @@
 			</div>
 		</div>
 		<div id="main" ng-if="showmain">
-			<md-grid-list
-		        md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
+			<md-grid-list md-cols-xs="2" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
 		        md-row-height-gt-md="1:1" md-row-height="2:2"
 		        md-gutter="12px" md-gutter-gt-sm="10px" >
 
 			    
 
 			    
-			    <md-grid-tile ng-repeat="tile in tiles" class="bg{{colorSet}}-{{tile.id % 5}}"
-			        md-rowspan="{{tile.rowspan}}" md-colspan="{{tile.colspan}}">
-			        <i class="top-left fa fa-check fa-3x"></i>
+			    <md-grid-tile ng-repeat="tile in tiles" 
+			    	class="bg{{colorSet}}-{{tile.id % 5}}"
+			        md-rowspan="{{tile.rowspan}}" 
+			        md-colspan-sm="{{tile.colspansm || 1}}"
+			        md-rowspan-sm="{{tile.rowspansm || 1}}" 
+			        md-colspan-xs="{{tile.colspanxs || 1}}"
+			        md-rowspan-xs="{{tile.rowspanxs || 1}}" 
+			        md-colspan="{{tile.colspan}}">
+			        <div ng-class="{'contact-container': tile.id==3}" style="color: {{tile.fontcolor}}">
+				        
 
-			        <h2 ng-if="tile.id==1">
-			        	<div class="col-xs-12 centered">
-	                                <i ng-if="!isGoing" class="fa fa-play fa-2x" ng-click="start()"></i>
-	                                <i ng-if="isGoing" class="fa fa-pause fa-2x" ng-click="stop()"></i>
-	                            </div>
-			        </h2>
-			        <div ng-if="tile.id==2">
-						{{clock}}
-			        </div>
-			        
-			        <div ng-if="tile.id==4">
-						<div ng-hide="$parent.dataSet!=1">
+				        <h2 ng-if="tile.id==1 || tile.id==6 || tile.id==12 || tile.id == 16 || tile.id == 23">
+				        	<div class="col-xs-12 centered" ng-click="toggleInterval()">
+		                                <i ng-if="!isGoing" class="fa fa-play fa-2x"></i>
+		                                <i ng-if="isGoing" class="fa fa-pause fa-2x"></i>
+		                    </div>
+				        </h2>
+				        <div ng-if="tile.id==2 || tile.id==21">
+				        	<div class="container-fluid carousel-container">
+				        		<div class="">
+									<slick class="slick" autoplay=true infinite=true slides-to-show=1 slides-to-scroll=1>
+								    	<div>
+											<i class='fa fa-twitter fa-5x'></i>
+								    	</div>
+								    	<div>
+											<i class='fa fa-facebook fa-5x'></i>
+										</div>
+										<div>
+								    	
+											<i class='fa fa-linkedin fa-5x'></i>
+								    	</div>
+								    	
+								    </slick>
+							    </div>
+							</div>
+				        </div>
+				        
+				        <div ng-if="tile.id==3">
 							<iframe class="iframe" src="http://ngpopulation.josedelavalle.com"></iframe>
 						</div>
-						<div ng-hide="$parent.dataSet!=2">
+						<div ng-if="tile.id==11">
 							<iframe class="iframe" src="http://ngnews.josedelavalle.com"></iframe>
 						</div>
-						<div ng-hide="$parent.dataSet!=3">
+						<div ng-if="tile.id==9">
 							<iframe class="iframe" src="http://nggallery.josedelavalle.com"></iframe>
 						</div>
-						<div ng-hide="$parent.dataSet!=4">
+						<div ng-if="tile.id==19">
 							<iframe class="iframe" src="http://ngstates.josedelavalle.com"></iframe>
 						</div>
-						<div ng-hide="$parent.dataSet!=5">
-							<iframe class="iframe" src="http://slickwebstudio.com"></iframe>
+						<div ng-if="tile.id==26">
+							<iframe class="iframe" src="http://josedelavalle.com"></iframe>
 						</div>
-			        </div>
-			        <div ng-show="tile.id==3">
-						<iframe class="iframe" src="http://josedelavalle.com#contact"></iframe>
-			        </div>
-					<div ng-show="tile.id==5">
-						<div class="container-fluid carouselContainer">
-							<slick class="slick" autoplay=true infinite=true slides-to-show=1 slides-to-scroll=1>
-						    	<div>
-									<img title="AngularJs" alt="AngularJs" height="200" src="./assets/images/angular.png" />
-						    	</div>
-						    	<div>
-									<img title="CSS3" alt="CSS3" height="200" src="./assets/images/css3.png" />
-						    	</div>
-						    	<div>
-									<img title="HTML5" alt="HTML5" height="200" src="./assets/images/html5.png" />
-						    	</div>
-						    </slick>
-						</div>
-					</div>
-			      <md-grid-tile-footer ng-hide="tile.id==4">
-			      
-			      	<div ng-if="tile.id===3">
-						<div ng-show="$parent.dataSet==1">
-							<a href='http://josedelavalle.com' target="_blank"><h3 class="tile-link">{{tile.footer}}</h3></a>
-						</div>
-			        </div>
-			       <div ng-if="tile.id!==3">
-						
-							<h3>{{tile.id}} - {{tile.footer}}</h3>
-						
-			        </div>
+				        
+				        <div ng-if="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25">
+					        <div class="full-width full-height">
+								<ng-map id="map" map-initialized="onMapLoaded()">
+								  <directions
+						            origin="Bedminster, NJ"
+						            destination="{{userCoords}}">
+						          </directions>
 
-			      </md-grid-tile-footer>
+								</ng-map>
+							</div>
+				        </div>	
+				        
+				        
+						<div ng-show="tile.id==4 || tile.id==13 || tile.id == 17 || tile.id==10 || tile.id==27">
+							<div class="container-fluid carousel-container">
+								<slick class="slick" autoplay=true infinite=true slides-to-show=1 slides-to-scroll=1>
+							    	<div>
+										<img title="AngularJs" alt="AngularJs" height="200" src="./assets/images/angular.png" />
+							    	</div>
+							    	<div>
+										<img title="CSS3" alt="CSS3" height="200" src="./assets/images/css3.png" />
+							    	</div>
+							    	<div>
+										<img title="HTML5" alt="HTML5" height="200" src="./assets/images/html5.png" />
+							    	</div>
+							    </slick>
+							</div>
+						</div>
+				        <md-grid-tile-footer ng-if="tile.id != 9 || tile.id != 26">
+					        <div>
+								<h3 class="md-grid-tile-footer">{{tile.id}} - <strong class="shadowed">{{tile.footer}}</strong></h3>
+					        </div>
+				        </md-grid-tile-footer>
+			      </div>
 			    </md-grid-tile>
-
 		  	</md-grid-list>
 	  	</div>
 	</div>
@@ -158,7 +180,7 @@
 	<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.2.0.js"></script>
 	<script src="./node_modules/chart.js/dist/Chart.min.js"></script>
 	<script src="./node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
-
+	<script src="http://maps.google.com/maps/api/js"></script>
 	<script src="./node_modules/ngmap/build/scripts/ng-map.min.js"></script>
 	<script src="./node_modules/slick-carousel/slick/slick.js"></script>
     <script src="./node_modules/angular-slick-carousel/dist/angular-slick.min.js"></script>

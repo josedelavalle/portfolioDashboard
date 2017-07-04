@@ -2,7 +2,7 @@
 /*----- Margins & Paddings -----*/
 /*------------------------------*/
 .margin-0 {
-  margin: 0; }
+  margin: 0 !important; }
 
 .margin-left-0 {
   margin-left: 0px; }
@@ -62,7 +62,7 @@
   margin-top: 30px; }
 
 .margin-top-50 {
-  margin-top: 50px; }
+  margin-top: 50px !important; }
 
 .margin-top-100 {
   margin-top: 100px; }
@@ -425,37 +425,47 @@
   to {
     opacity: 0; } }
 
+@keyframes opacityUp {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+#main .ng-enter {
+  animation: opacityUp 0.5s both ease-in-out;
+  z-index: 10;
+  animation-delay: 0.5s; }
+
 #main .ng-leave {
-  animation: opacityDown 0.25s both ease-in-out;
+  animation: opacityDown 0.5s both ease-in-out;
   z-index: 10; }
 
+.controls .ng-enter {
+  animation: none !important; }
+
+.controls .ng-leave {
+  animation: none !important; }
+
 .bg1-0 {
-  background: #222222;
-  color: #ddd; }
+  background: #222222; }
 
 .bg1-1 {
-  background: #3b3b3b;
-  color: #ddd; }
+  background: #3b3b3b; }
 
 .bg1-2 {
-  background: #2b6669;
-  color: #ddd; }
+  background: #2b6669; }
 
 .bg1-3 {
-  background: #398a8e;
-  color: #ddd; }
+  background: #398a8e; }
 
 .bg1-4 {
-  background: #46aeb4;
-  color: #ddd; }
+  background: #46aeb4; }
 
 .bg2-0 {
-  background: #5383bc;
-  color: #ddd; }
+  background: #5383bc; }
 
 .bg2-1 {
-  background: #222222;
-  color: #ddd; }
+  background: #222222; }
 
 .bg2-2 {
   background: #315178; }
@@ -464,8 +474,7 @@
   background: #3b3b3b; }
 
 .bg2-4 {
-  background: #3f6a9d;
-  color: #ddd; }
+  background: #3f6a9d; }
 
 .bg2-5 {
   background: #315178; }
@@ -474,8 +483,7 @@
   background: #35825b; }
 
 .bg3-1 {
-  background: #424242;
-  color: #ddd; }
+  background: #424242; }
 
 .bg3-2 {
   background: #43a874; }
@@ -487,12 +495,10 @@
   background: #5dc08d; }
 
 .bg4-0 {
-  background: #7f7bca;
-  color: #ddd; }
+  background: #7f7bca; }
 
 .bg4-1 {
-  background: #565656;
-  color: #ddd; }
+  background: #565656; }
 
 .bg4-2 {
   background: #a19ed9; }
@@ -513,12 +519,10 @@
   background: #BBC8CA; }
 
 .bg5-3 {
-  background: #702e3c;
-  color: #ddd; }
+  background: #702e3c; }
 
 .bg5-4 {
-  background: #b94a62;
-  color: #ddd; }
+  background: #b94a62; }
 
 .gray {
   background: #f5f5f5; }
@@ -547,10 +551,41 @@ body {
 * {
   outline: none; }
 
+.md-grid-tile-footer {
+  font-size: 2sem; }
+
+@media (max-width: 767px) {
+  h4 {
+    font-size: 10px !important; }
+  .class .fa {
+    font-size: 5em !important; } }
+
+@media (min-width: 768px) {
+  h4 {
+    font-size: 18px !important; } }
+
+.centered {
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.full-height {
+  height: 100% !important; }
+
 md-grid-list {
   margin: 8px; }
 
-.carouselContainer {
+.full-width {
+  width: 100% !important; }
+
+.contact-container {
+  width: 100%;
+  padding: 20px 20px;
+  margin: 30px 30px; }
+
+.carousel-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -559,15 +594,31 @@ md-grid-list {
   width: 100%;
   height: 100%; }
 
+.shadowed {
+  text-shadow: 1px 0px 2px #969696; }
+
 .slick {
-  width: 100%; }
+  width: 100%;
+  margin: 20px auto;
+  vertical-align: middle; }
   .slick img {
     width: 100%;
     height: 100%; }
+  .slick .fa {
+    font-size: 20em; }
+    @media (max-width: 767px) {
+      .slick .fa {
+        font-size: 6em; } }
+    @media (min-width: 768px) {
+      .slick .fa {
+        font-size: 15em; } }
 
 .slick-prev:before,
 .slick-next:before {
   display: none; }
+
+.font-larger {
+  font-size: 1.5em; }
 
 .tile-link {
   color: white;
@@ -595,7 +646,7 @@ md-grid-list {
 
 md-grid-tile {
   transition: all 400ms ease-out 50ms;
-  box-shadow: 0 0 2px 1px #555, 0 0 2px 1px #ddd; }
+  transition: background-color 5000ms ease-out 50ms; }
 
 #red-slider .md-thumb:after, #red-slider .md-track-fill {
   background-color: #652415 !important;
@@ -610,9 +661,28 @@ md-grid-tile {
   font-weight: 700; }
 
 .page {
-  background: #ccc;
   height: 100%;
   color: #652415; }
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100% !important; }
+
+.tech {
+  min-height: 200px;
+  width: 200px; }
+
+.tech1 {
+  background-image: url("./assets/images/angular.png"); }
+
+.tech2 {
+  background-image: url("./assets/images/css3.png"); }
+
+.tech2 {
+  background-image: url("../../images/html5.png"); }
 
 .menu {
   position: absolute;

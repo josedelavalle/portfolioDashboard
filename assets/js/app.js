@@ -58,22 +58,27 @@ app.directive('onDragEnd', function() {
 });
 app.controller('portfolioDashboardController', portfolioDashboardController);
 
-portfolioDashboardController.$inject = ['$scope', '$interval', '$timeout', 'pdFactory', '$mdMedia', '$mdColorPalette', 'NgMap'];
+portfolioDashboardController.$inject = ['$scope', '$window', '$interval', '$timeout', 'pdFactory', '$mdMedia', '$mdColorPalette', 'NgMap'];
 
-function portfolioDashboardController($scope, $interval, $timeout, pdFactory, $mdMedia, $mdColorPalette, NgMap) {
+function portfolioDashboardController($scope, $window, $interval, $timeout, pdFactory, $mdMedia, $mdColorPalette, NgMap) {
 	console.log('portfolio dashboard controller', Date());
 	var self = this, j= 0, counter = 0;
 	$scope.colorSet = 1;
 	$scope.maxColorSets = 5;
-	$scope.dataSet = 4;
+	$scope.dataSet = 1;
 	$scope.userLocation = {};
 	$scope.userCoords = null;
 	$scope.showmain = true;
+    $scope.isGoing = false;
 	// $scope.colors = Object.keys($mdColorPalette);
 	// console.log('colors', $scope.colors);
 	$scope.clock = ""; // initialise the time variable
     $scope.tickInterval = 1000 //ms
-
+    NgMap.getMap().then(function(map) {
+        console.log(map.getCenter());
+        console.log('markers', map.markers);
+        console.log('shapes', map.shapes);
+      });
 	pdFactory.getUserLocation().then(function(res) {
 		console.log('got user location', res);
 		var usercoords = res.coords.latitude + "," + res.coords.longitude;
@@ -176,42 +181,56 @@ function portfolioDashboardController($scope, $interval, $timeout, pdFactory, $m
 	$scope.setColor = function(i) {
 		$scope.colorSet = i;
 	}
-	var defaultTiles= [[{ id: 1, title: '0', footer: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
-						{ id: 4, title: '1', footer: 'hello', rowspan: 2, colspan: 3 },
-						{ id: 3, title: '2', footer: 'Visit Full Site', rowspan: 2, colspan: 1 },
-						{ id: 2, title: '3', footer: 'hello', rowspan: 1, colspan: 2 },
-						{ id: 5, title: '4', footer: 'Technologies', rowspan: 1, colspan: 1 }],
-						[{ id: 1, title: '0', body1: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
-						{ id: 2, title: '1', footer: 'hello1', rowspan: 1, colspan: 2 },
-						{ id: 3, title: '2', footer: 'hello2', rowspan: 2, colspan: 1 },
-						{ id: 4, title: '3', footer: 'hello3', rowspan: 2, colspan: 3 },
-						{ id: 5, title: '4', footer: 'Technologies', rowspan: 1, colspan: 1 }],
-						[{ id: 4, title: '1', footer: 'hello4', rowspan: 2, colspan: 3 },
-						{ id: 1, title: '4', footer: 'Color', rowspan: 1, colspan: 1 },
-						{ id: 5, title: '1', footer: 'hello5', rowspan: 1, colspan: 1 },
-						{ id: 3, title: '2', footer: 'hello6', rowspan: 1, colspan: 2 },
-						{ id: 6, title: '3', footer: 'hello7', rowspan: 1, colspan: 2 }],
-						[{ id: 1, title: '0', footer: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
-						{ id: 2, title: '1', footer: 'hello8', rowspan: 1, colspan: 1 },
-						{ id: 3, title: '2', footer: 'hello', rowspan: 1, colspan: 2 },
-						{ id: 4, title: '3', footer: 'hello', rowspan: 2, colspan: 2 },
-						{ id: 5, title: '4', footer: 'Technologies', rowspan: 1, colspan: 1 },
-						{ id: 6, title: '0', footer: 'hello', rowspan: 2, colspan: 1 },
-						{ id: 7, title: '1', footer: 'hello', rowspan: 1, colspan: 1 }],
-						[{ id: 1, title: '0', footer: 'Jose DeLavalle', rowspan: 1, colspan: 1 },
-						{ id: 2, title: '1', footer: 'hello', rowspan: 1, colspan: 1 },
-						{ id: 3, title: '2', footer: 'hello', rowspan: 1, colspan: 2 },
-						{ id: 4, title: '3', footer: 'hello', rowspan: 2, colspan: 2 },
-						{ id: 5, title: '4', footer: 'Technologies', rowspan: 1, colspan: 1 },
-						{ id: 6, title: '0', footer: 'hello', rowspan: 2, colspan: 1 },
-						{ id: 7, title: '1', footer: 'hello', rowspan: 1, colspan: 1 }]
-
+	var defaultTiles= [[{ id: 1, title: '0', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2 },
+						
+						{ id: 3, title: '2', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, rowspanxs: 2, colspanxs: 2 },
+                        { id: 4, title: '1', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, rowspanxs: 1, colspanxs: 1},
+                        { id: 5, title: '4', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 2 },
+						{ id: 2, title: '3', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
+                        { id: 0, title: '3', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 }],
+						[{ id: 6, title: '0', fontcolor: '#ddd', body1: '', rowspan: 1, colspan: 1 },
+						{ id: 7, title: '1', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 2 },
+						{ id: 8, title: '2', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 1 },
+						{ id: 9, title: '3', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3 },
+						{ id: 10, title: '4', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 }],
+						[{ id: 11, title: '1', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspanxs: 1, rowspanxs: 2},
+						{ id: 12, title: '4', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
+						{ id: 13, title: '1', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, rowspanxs: 2 },
+						{ id: 14, title: '2', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 2 },
+						{ id: 15, title: '3', fontcolor: '#ddd', data: 'states', footer: 'How far you are from me', colspanxs: 2, rowspan: 1, colspan: 2 }],
+						[{ id: 16, title: '0', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
+						{ id: 17, title: '1', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
+						{ id: 18, title: '2', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 2 },
+                        { id: 21, title: '0', fontcolor: '#ddd', data: '', footer: 'hello11', rowspan: 1, colspan: 1 },
+						{ id: 19, title: '3', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3 },
+                        { id: 20, title: '0', fontcolor: '#ddd', data: '', footer: 'hello11', rowspan: 1, colspan: 1 }],
+						[{ id: 23, title: '0', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
+                        { id: 25, title: '2', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 2 },
+                        { id: 27, title: '4', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
+                        { id: 26, title: '3', fontcolor: '#ddd', footer: '', rowspan: 3, colspan: 4 }]
+						
 						];
 				   
 	console.log('default tiles', defaultTiles);
+    var triggerResize = function () {
+        console.log('triggerresize');
+        var evt = $window.document.createEvent('UIEvents'); 
+        evt.initUIEvent('resize', true, false, $window, 0); 
+        $window.dispatchEvent(evt);
+      };
+
+    $scope.onMapLoaded = function () {
+        console.log('map loaded');
+        var self = this;
+        triggerResize();
+        NgMap.getMap().then(function(map) {
+          map.setOptions({draggable: true, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+        });
+      };
 	$scope.defaultTiles = function() {
 		console.log('data set', $scope.dataSet)
 		$scope.tiles = defaultTiles[$scope.dataSet - 1];
+        triggerResize();
 	};
 
 	
@@ -231,6 +250,7 @@ function portfolioDashboardController($scope, $interval, $timeout, pdFactory, $m
 
 	$scope.defaultTiles();
 
+    
 	
 	var getInterval = function () {
 		return $scope.intervalLength;
@@ -257,6 +277,7 @@ function portfolioDashboardController($scope, $interval, $timeout, pdFactory, $m
     
     var timeoutLength = 5000;
     $scope.start = function () {
+        $scope.isGoing = true;
         promise = $interval(function () {
 
             self.determinateValue += 1;
@@ -278,7 +299,7 @@ function portfolioDashboardController($scope, $interval, $timeout, pdFactory, $m
             if (j == 2) self.contained = "indeterminate";
 
         }, timeoutLength / 100, 0, true);
-        $scope.isGoing = true
+        
         $interval(function () {
             self.mode = (self.mode == 'query' ? 'determinate' : 'query');
         }, timeoutLength, 0, true);
@@ -287,6 +308,15 @@ function portfolioDashboardController($scope, $interval, $timeout, pdFactory, $m
     $scope.stop = function () {
         $scope.isGoing = false;
         $interval.cancel(promise);
+    };
+    $scope.toggleInterval = function() {
+        if ($scope.isGoing) {
+            $scope.isGoing = false;
+            $scope.stop();
+        } else {
+            $scope.isGoing = true;
+            $scope.start();
+        }
     };
     $scope.start();
     

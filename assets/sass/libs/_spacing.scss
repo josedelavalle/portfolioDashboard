@@ -2,7 +2,7 @@
 /*----- Margins & Paddings -----*/
 /*------------------------------*/
 .margin-0 {
-  margin: 0;
+  margin: 0 !important;
 }
 .margin-left-0 {
   margin-left: 0px;
@@ -62,7 +62,7 @@
   margin-top: 30px;
 }
 .margin-top-50 {
-  margin-top: 50px;
+  margin-top: 50px !important;
 }
 .margin-top-100 {
     margin-top: 100px;

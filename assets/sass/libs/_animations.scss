@@ -47,7 +47,17 @@
     to      { opacity: 0; }
 }
 
+@keyframes opacityUp {
+    from    { opacity: 0; }
+    to      { opacity: 1; }
+}
+
 #main {
   //.ng-enter          { animation: slideInRight 0.6s both ease-in-out; z-index: 8888; }
-  .ng-leave           { animation: opacityDown 0.25s both ease-in-out; z-index: 10; }
+  .ng-enter           { animation: opacityUp 0.5s both ease-in-out; z-index: 10; animation-delay: 0.5s}
+  .ng-leave           { animation: opacityDown 0.5s both ease-in-out; z-index: 10; }
+}
+.controls {
+    .ng-enter { animation: none !important;}
+    .ng-leave { animation: none !important;}
 }
