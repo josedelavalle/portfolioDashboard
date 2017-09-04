@@ -111,7 +111,7 @@
 								<span>{{tile.span}}</span>
 							</div>
 						</div>
-				        <div ng-if="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25">
+				        <div ng-show="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25">
 					        <div class="full-width full-height">
 								<ng-map id="map" map-initialized="onMapLoaded()">
 								  <directions
@@ -141,7 +141,9 @@
 						</div>
 				        <md-grid-tile-footer ng-show="tile.footer">
 					        <div>
-								<h3 class="md-grid-tile-footer">{{tile.id}} - <strong class="shadowed">{{tile.footer}}</strong></h3>
+								<h3 class="md-grid-tile-footer">
+								<string class="shadowed hidden">{{tile.id}} - </string>
+								<strong class="shadowed">{{tile.footer}}</strong></h3>
 					        </div>
 				        </md-grid-tile-footer>
 			      </div>

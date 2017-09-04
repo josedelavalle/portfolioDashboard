@@ -616,7 +616,7 @@ md-grid-list {
 
 .fa-pause, .fa-play, .carousel-container .fa {
   font-size: 20em;
-  margin: auto 0 !important; }
+  margin: auto 0 48px !important; }
   @media (max-width: 767px) {
     .fa-pause, .fa-play, .carousel-container .fa {
       font-size: 3em !important; } }
@@ -745,7 +745,19 @@ md-grid-tile {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  font-size: 5em; }
+  margin-bottom: 48px; }
+  @media (max-width: 767px) {
+    .grid2x2 {
+      font-size: 2.5em !important; } }
+  @media (min-width: 768px) {
+    .grid2x2 {
+      font-size: 5em !important; } }
+  @media (min-width: 992px) {
+    .grid2x2 {
+      font-size: 3em !important; } }
+  @media (min-width: 1200px) {
+    .grid2x2 {
+      font-size: 5em !important; } }
 
 .grid2x2 > div {
   display: flex;
@@ -771,14 +783,15 @@ md-grid-tile {
     left: 5px; }
 
 .menu {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   padding: 0 10px;
   min-height: 100px;
   max-height: 100px;
   background: #ddd;
-  z-index: 1; }
+  z-index: 1;
+  overflow: hidden; }
 
 .progressIndicator {
   z-index: 3; }
@@ -788,7 +801,7 @@ md-grid-tile {
       background-color: #652415; }
 
 .switch {
-  position: fixed;
+  position: absolute;
   top: 10px;
   right: 10px;
   z-index: 2;

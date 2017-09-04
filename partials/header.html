@@ -3,9 +3,14 @@
 	<div class="row margin-right-80">
 
 	  <div class="hidden-sm hidden-xs col-md-3">
-		<h3 class="padding-top-5">
+		<h3 class="padding-top-5 margin-top-10">
 		<div class="">Jose DeLavalle's Portfolio</div>
-		<i class="fa fa-lightbulb-o" ng-click="showSetNumbers=!"></i>
+		<div>
+			<a target="_blank" href="https://github.com/josedelavalle/portfolioDashboard">
+				<small>Check out code on Github</small>
+			</a>
+		</div>
+		<i class="fa fa-lightbulb-o hidden-md margin-top-5" ng-click="showSetNumbers=!showSetNumbers"></i>
 		<span ng-init="showSetNumbers=false" ng-show="showSetNumbers" class="info">dataset: {{dataSet}}, colorset: {{colorSet}}
 		</span>
 		</h3>

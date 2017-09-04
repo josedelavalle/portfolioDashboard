@@ -154,7 +154,7 @@ md-grid-list {
 			font-size: 6em !important;
 		}
 		font-size: 20em;
-		margin: auto 0 !important;
+		margin: auto 0 48px !important;
 	}
 .slick-prev:before,
 .slick-next:before {
@@ -290,7 +290,20 @@ md-grid-tile {
 	  display: flex;
 	  flex-wrap: wrap;
 	  flex-direction: row;
-	  font-size: 5em;
+	  @include responsive(xs) {
+			font-size: 2.5em !important;
+			//margin: 20px 0;
+		}
+		@include responsive(sm) {
+			font-size: 5em !important;
+		}
+		@include responsive(md) {
+			font-size: 3em !important;
+		}
+		@include responsive(lg) {
+			font-size: 5em !important;
+		}
+	  margin-bottom: 48px;
 	}
 	.grid2x2 > div {
 	  display: flex; 
@@ -332,7 +345,7 @@ md-grid-tile {
 	}
 }
 .menu {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	width: 100%;
 	padding: 0 10px;
@@ -340,6 +353,7 @@ md-grid-tile {
 	max-height: 100px;
 	background: $light-grey;
 	z-index: 1;
+	overflow: hidden;
 }
 
 .progressIndicator {
@@ -352,7 +366,7 @@ md-grid-tile {
 	}
 }
 .switch {
-	position: fixed;
+	position: absolute;
 	top: 10px;
 	right: 10px;
 	z-index: 2;
