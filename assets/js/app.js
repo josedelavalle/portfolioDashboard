@@ -69,7 +69,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 	$scope.userLocation = {};
 	$scope.userCoords = null;
 	$scope.showmain = true;
-    $scope.isGoing = false;
+    $scope.isGoing = true;
 	// $scope.colors = Object.keys($mdColorPalette);
 	// console.log('colors', $scope.colors);
 	$scope.clock = ""; // initialise the time variable
@@ -181,33 +181,35 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 	$scope.setColor = function(i) {
 		$scope.colorSet = i;
 	}
-	var defaultTiles= [[{ id: 1, title: '0', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2 },
-						
-						{ id: 3, title: '2', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, rowspanxs: 2, colspanxs: 2 },
-                        { id: 4, title: '1', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, rowspanxs: 1, colspanxs: 1},
-                        { id: 5, title: '4', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 2 },
-						{ id: 2, title: '3', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
-                        { id: 0, title: '3', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 }],
-						[{ id: 6, title: '0', fontcolor: '#ddd', body1: '', rowspan: 1, colspan: 1 },
-						{ id: 7, title: '1', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 2 },
-						{ id: 8, title: '2', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 1 },
-						{ id: 9, title: '3', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3 },
-						{ id: 10, title: '4', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 }],
-						[{ id: 11, title: '1', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspanxs: 1, rowspanxs: 2},
-						{ id: 12, title: '4', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
-						{ id: 13, title: '1', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, rowspanxs: 2 },
+	var defaultTiles= [[{ id: 1, title: '0', fontcolor: '#ddd', footer: 'Stop the color change cycle', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2 },
+						{ id: 3, title: '2', fontcolor: '#ddd', footer: 'Compare and contrast country populations', rowspan: 2, colspan: 3, rowspanxs: 2, colspanxs: 2 },
+                        { id: 4, title: '1', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1},
+                        { id: 5, title: '4', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 3, colspanxs: 2, colspans: 2 },
+						{ id: 2, title: '3', fontcolor: '#ddd', footer: 'Places to find me', rowspan: 1, colspan: 1 },
+                        { id: 24, title: '3', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, span: 'Add countries to compare their populations based on gender and increasing age.', hidden: 'true' },
+                        ],
+						[{ id: 6, title: '0', fontcolor: '#ddd', body1: '', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2  },
+						{ id: 7, title: '1', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 2, colspansm: 2 },
+						{ id: 8, title: '2', fontcolor: '#ddd', footer: 'Places to find me', rowspan: 1, colspan: 1},
+						{ id: 9, title: '3', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspansm: 2, colspanxs: 2, rowspansm: 2, rowspanxs: 2 },
+                        { id: 10, title: '2', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1},
+						{ id: 22, title: '4', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, span: 'Peak at photos taken anywhere in the world.  Select a destination and let her rip'}],
+						[{ id: 11, title: '1', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspanxs: 2, colspansm: 2, rowspanxs: 2, rowspansm: 2},
+						{ id: 12, title: '4', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2 },
+						{ id: 13, title: '1', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
 						{ id: 14, title: '2', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 2 },
 						{ id: 15, title: '3', fontcolor: '#ddd', data: 'states', footer: 'How far you are from me', colspanxs: 2, rowspan: 1, colspan: 2 }],
-						[{ id: 16, title: '0', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
-						{ id: 17, title: '1', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
-						{ id: 18, title: '2', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 2 },
+						[{ id: 16, title: '0', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2 },
+						{ id: 18, title: '2', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 2, colspansm: 2, colspanxs: 2 },
+                        { id: 17, title: '1', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
                         { id: 21, title: '0', fontcolor: '#ddd', data: '', footer: 'hello11', rowspan: 1, colspan: 1 },
-						{ id: 19, title: '3', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3 },
-                        { id: 20, title: '0', fontcolor: '#ddd', data: '', footer: 'hello11', rowspan: 1, colspan: 1 }],
+						{ id: 19, title: '3', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspansm: 2, colspanxs: 2, rowspansm: 2, rowspanxs: 2 },
+                        { id: 20, title: '0', fontcolor: '#ddd', data: '', footer: 'hello11', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2 }],
 						[{ id: 23, title: '0', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
-                        { id: 25, title: '2', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 2 },
+                        
                         { id: 27, title: '4', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1 },
-                        { id: 26, title: '3', fontcolor: '#ddd', footer: '', rowspan: 3, colspan: 4 }]
+                        { id: 25, title: '2', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 2, colspansm: 2, colspanxs: 2 },
+                        { id: 26, title: '3', fontcolor: '#ddd', footer: '', rowspan: 3, colspan: 4, colspansm: 2, colspanxs: 2, rowspansm: 4, rowspanxs: 4 }]
 						
 						];
 				   
@@ -233,7 +235,16 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
         triggerResize();
 	};
 
-	
+	$scope.goNext = function () {
+        $scope.dataSet++;
+        if ($scope.dataSet > defaultTiles.length) $scope.dataSet = 1;      
+        $scope.defaultTiles();  
+    };
+    $scope.goPrev = function () {
+        $scope.dataSet--;
+        if ($scope.dataSet === 0) $scope.dataSet = defaultTiles.length;
+        $scope.defaultTiles();
+    };
 	$scope.initTiles = function() {
 		
 
@@ -277,7 +288,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
     
     var timeoutLength = 5000;
     $scope.start = function () {
-        $scope.isGoing = true;
+        
         promise = $interval(function () {
 
             self.determinateValue += 1;
@@ -306,10 +317,11 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
     }
 
     $scope.stop = function () {
-        $scope.isGoing = false;
+        
         $interval.cancel(promise);
     };
     $scope.toggleInterval = function() {
+        console.log($scope.isGoing);
         if ($scope.isGoing) {
             $scope.isGoing = false;
             $scope.stop();

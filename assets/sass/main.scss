@@ -41,9 +41,14 @@ body {
 	outline: none;
 
 }
-.md-grid-tile-footer {
-	
-		font-size: 2sem;
+a {
+	color: white !important;
+	text-decoration: none !important;
+	outline: none !important;
+}
+md-grid-tile-footer {
+		background-color: rgba(0,0,0,0.5) !important;
+		font-size: 2em;
 	
 }
 @include responsive(xs) {
@@ -99,28 +104,58 @@ md-grid-list {
 }
 .slick {
 	width: 100%;
-	margin: 20px auto;
+	//margin: 0 auto 30px;
 	vertical-align: middle;
+	//padding-top: 33%;
+	div {
+		text-align: center;
+	}
 	@include responsive(xs) {
 
 	}
 	
 	img {
+		//margin-top: -20px;
 		width: 100%;
 		height: 100%;
+
 	}
 	.fa {
-		@include responsive(xs) {
-			font-size: 6em;
-			//margin: 20px 0;
-		}
-		@include responsive(sm) {
-			font-size: 15em;
-		}
-		font-size: 20em;
+
+		// @include responsive(xs) {
+		// 	font-size: 10em;
+		// 	//margin: 20px 0;
+		// }
+		// @include responsive(sm) {
+		// 	font-size: 25em;
+		// }
+		// @include responsive(md) {
+		// 	font-size: 10em;
+		// }
+		// @include responsive(lg) {
+		// 	font-size: 25em;
+		// }
+		font-size: 1000%;
 		//margin: auto 0;
 	}
 }
+.fa-pause, .fa-play, .carousel-container .fa {
+		@include responsive(xs) {
+			font-size: 3em !important;
+			//margin: 20px 0;
+		}
+		@include responsive(sm) {
+			font-size: 3.5em !important;
+		}
+		@include responsive(md) {
+			font-size: 4em !important;
+		}
+		@include responsive(lg) {
+			font-size: 6em !important;
+		}
+		font-size: 20em;
+		margin: auto 0 !important;
+	}
 .slick-prev:before,
 .slick-next:before {
    display:none;
@@ -141,6 +176,45 @@ md-grid-list {
 .info {
 	font-size: 15px;
 }
+.description {
+	@include responsive(xs) {
+			font-size: 1em !important;
+			//margin: 20px 0;
+		}
+		@include responsive(sm) {
+			font-size: 1.8em !important;
+		}
+		@include responsive(md) {
+			font-size: 1.3em !important;
+		}
+		@include responsive(lg) {
+			font-size: 2em !important;
+		}
+	padding: 10px 30px;
+
+}
+.slider-controls {
+	.fa {
+		font-size: 3em;
+		font-weight: 900;
+	}
+}
+.display-flex {
+	display: flex;
+}
+.flex-wrap {
+	flex-wrap: wrap;
+}
+.flex-nowrap {
+	flex-wrap: nowrap;
+}
+.margin-auto {
+	margin: auto;
+}
+.md-track-container {
+	top: 21px !important;
+	height: 7px !important;
+}
 .iframe {
 	position: absolute;
 	top: 0;
@@ -157,6 +231,8 @@ md-grid-list {
 
 .fa-toggle-off {
 	//color: white;
+	background: #ddd;
+	border-radius: 4px;
 }
 md-grid-tile {
     transition: all 400ms ease-out 50ms;
@@ -207,8 +283,56 @@ md-grid-tile {
 		background-image: url('../../images/html5.png');
 	}
 
+
+
+	.grid2x2 {
+	  min-height: 100%;
+	  display: flex;
+	  flex-wrap: wrap;
+	  flex-direction: row;
+	  font-size: 5em;
+	}
+	.grid2x2 > div {
+	  display: flex; 
+	  flex-basis: calc(50% - 20px);  
+	  justify-content: center;
+	  flex-direction: column;
+	}
+	.grid2x2 > div > div {
+	  display: flex;
+	  justify-content: center;
+	  flex-direction: row;
+	}
+
+	.box { margin: 10px; }
+	
+
+
+
+
+
+.icon-grid {
+	display: flex;
+	font-size: 10em;
+	* {
+		position: absolute;
+	}
+	.twitter-icon {
+		top: 5px;
+		left: 5px;
+	}
+	.github-icon {
+
+	}
+	.mail-icon {
+
+	}
+	.linkedin-icon {
+
+	}
+}
 .menu {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	width: 100%;
 	padding: 0 10px;
@@ -228,9 +352,10 @@ md-grid-tile {
 	}
 }
 .switch {
-	position: absolute;
+	position: fixed;
 	top: 10px;
 	right: 10px;
 	z-index: 2;
 	outline: none;
+	margin-right: 5px;
 }
