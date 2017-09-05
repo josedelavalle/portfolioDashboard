@@ -48,9 +48,10 @@
 	  </div>	
 
 	  <div class="col-md-3 hidden-sm hidden-xs text-right">
-		<h3>
-		<div>{{ clock | date:'shortTime'}}</div>
+		<h3 class="padding-top-5 margin-top-10">
+		
         <div class="hidden-sm hidden-xs">{{ clock | date:'EEE'}}&nbsp;{{ clock | date:'dd MMM'}}</div>
+        <small class="time">{{ clock | date:'shortTime'}}</small>
 
 		</h3>
 	  </div>

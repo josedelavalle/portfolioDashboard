@@ -111,7 +111,7 @@
 								<span>{{tile.span}}</span>
 							</div>
 						</div>
-				        <div ng-show="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25">
+				        <div ng-if="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25">
 					        <div class="full-width full-height">
 								<ng-map id="map" map-initialized="onMapLoaded()">
 								  <directions

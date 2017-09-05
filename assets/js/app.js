@@ -78,7 +78,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
         console.log(map.getCenter());
         console.log('markers', map.markers);
         console.log('shapes', map.shapes);
-        
+
       });
 	pdFactory.getUserLocation().then(function(res) {
 		console.log('got user location', res);
@@ -216,18 +216,19 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 				   
 	console.log('default tiles', defaultTiles);
     var triggerResize = function () {
-        console.log('triggerresize');
+        //console.log('triggerresize');
         var evt = $window.document.createEvent('UIEvents'); 
         evt.initUIEvent('resize', true, false, $window, 0); 
         $window.dispatchEvent(evt);
       };
-      //$interval(triggerResize, 3000);
+    $interval(triggerResize, 3000);
     $scope.onMapLoaded = function () {
         console.log('map loaded');
         var self = this;
         $timeout(triggerResize, 100);
         NgMap.getMap().then(function(map) {
           map.setOptions({draggable: true, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+          map.getCenter();
         });
       };
 	$scope.defaultTiles = function() {

@@ -740,6 +740,9 @@ md-grid-tile {
 .tech2 {
   background-image: url("../../images/html5.png"); }
 
+.time {
+  color: #808080; }
+
 .grid2x2 {
   min-height: 100%;
   display: flex;
