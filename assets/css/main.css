@@ -786,14 +786,14 @@ md-grid-tile {
     left: 5px; }
 
 .menu {
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   padding: 0 10px;
   min-height: 100px;
   max-height: 100px;
   background: #ddd;
-  z-index: 1;
+  z-index: 9999;
   overflow: hidden; }
 
 .progressIndicator {

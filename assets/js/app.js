@@ -183,28 +183,28 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 		$scope.colorSet = i;
 	}
 	var defaultTiles= [[{ id: 1, title: '0', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2 },
-						{ id: 3, title: '2', fontcolor: '#ddd', footer: 'Compare and contrast country populations', rowspan: 2, colspan: 3, rowspanxs: 2, colspanxs: 2 },
-                        { id: 4, title: '1', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1},
-                        { id: 5, title: '4', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 3, colspanxs: 2, colspans: 2 },
-						{ id: 2, title: '3', fontcolor: '#ddd', footer: 'Places to find me', rowspan: 1, colspan: 1 },
+						{ id: 3, title: '2', fontcolor: '#ddd', footer: 'Compare and contrast country populations', rowspan: 2, colspan: 3, colspanxs: 2, rowspanxs: 4, colspansm: 2 },
+                        { id: 4, title: '1', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1, colspanxs: 1},
+                        { id: 5, title: '4', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 3, colspanxs: 1, colspansm: 1 },
+						{ id: 2, title: '3', fontcolor: '#ddd', footer: 'Places to find me', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2 },
                         { id: 24, title: '3', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, span: 'Add countries to compare their populations based on gender and increasing age.', hidden: true },
                         ],
 						[{ id: 6, title: '0', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2  },
-						{ id: 7, title: '1', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 3, colspansm: 2 },
+						{ id: 7, title: '1', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 3, colspanxs: 2, colspansm: 2 },
 						{ id: 9, title: '3', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspansm: 2, colspanxs: 2, rowspansm: 2, rowspanxs: 2 },
                         { id: 10, title: '2', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1},
                         { id: 8, title: '2', fontcolor: '#ddd', footer: 'Places to find me', rowspan: 1, colspan: 1},
 						{ id: 22, title: '4', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, span: 'Peak at photos taken anywhere in the world.  Select a destination and let her rip', hidden: true}],
-						[{ id: 11, title: '1', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspanxs: 2, colspansm: 2, rowspanxs: 2, rowspansm: 2},
+						[{ id: 11, title: '1', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspanxs: 2, colspansm: 2, rowspanxs: 3, rowspansm: 2},
 						{ id: 12, title: '4', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2 },
 						{ id: 13, title: '1', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1 },
 						{ id: 14, title: '2', fontcolor: '#ddd', footer: 'Places to find me', rowspan: 1, colspan: 1 },
-						{ id: 15, title: '3', fontcolor: '#ddd', data: 'states', footer: 'How far you are from me', colspanxs: 2, rowspan: 1, colspan: 3 }],
+						{ id: 15, title: '3', fontcolor: '#ddd', data: 'states', footer: 'How far you are from me', colspanxs: 2, colspansm: 2, rowspan: 1, colspan: 3 }],
 						[{ id: 16, title: '0', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2 },
                         { id: 19, title: '3', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspansm: 2, colspanxs: 2, rowspansm: 2, rowspanxs: 2 },
                         { id: 17, title: '1', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1 },
-                        { id: 18, title: '2', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 3, colspansm: 2, colspanxs: 2 },
-                        { id: 21, title: '0', fontcolor: '#ddd', data: '', footer: 'Places to find me', rowspan: 1, colspan: 1 },
+                        { id: 18, title: '2', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 3, colspansm: 1, colspanxs: 1 },
+                        { id: 21, title: '0', fontcolor: '#ddd', data: '', footer: 'Places to find me', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2 },
                         { id: 20, title: '0', fontcolor: '#ddd', data: '', footer: '', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2, hidden: true }],
 						[{ id: 23, title: '0', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1 },
                         
@@ -221,7 +221,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
         evt.initUIEvent('resize', true, false, $window, 0); 
         $window.dispatchEvent(evt);
       };
-    $interval(triggerResize, 3000);
+    $interval(triggerResize, 300);
     $scope.onMapLoaded = function () {
         console.log('map loaded');
         var self = this;
