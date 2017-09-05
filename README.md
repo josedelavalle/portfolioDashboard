@@ -1,4 +1,5 @@
 Jose DeLavalle's Dashboard style portfolio site.
+<a target="_blank" href="http://portfolio.josedelavalle.com">portfolio.josedelavalle.com</a>
 
 I work full-time as a Full-Stack .Net Programmer, developing web apps for companies of all sizes.  Here is a collection of some of my side projects I have built throughout the years.
 Cycle through them with the slider at top/center
