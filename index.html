@@ -4,7 +4,13 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title></title>
+	<title>Jose DeLavalle Portfolio Dashboard</title>
+	<script>
+	if (screen.width <= 1024) {
+		
+	  	window.location = "http://josedelavalle.com";
+	}
+	</script>
 	<link rel="stylesheet" href="./assets/css/main.css">
 	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
@@ -12,13 +18,14 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="./node_modules/slick-carousel/slick/slick.css">
     <link rel="stylesheet" href="./node_modules/slick-carousel/slick/slick-theme.css">
-
+	
 </head>
 <body ng-app="app">
+
 	<div class="page" ng-controller="portfolioDashboardController as vm" ng-cloak ng-class="{'padding-top-100' : toggled}">
 		<div class="switch" ng-init="toggled=true" ng-click="toggled=!toggled">
-			<i ng-show="toggled" class="fa fa-toggle-on fa-4x"></i>
-			<i ng-show="!toggled" class="fa fa-toggle-off fa-4x"></i>
+			<!-- <i ng-show="toggled" class="fa fa-toggle-on fa-4x"></i>
+			<i ng-show="!toggled" class="fa fa-toggle-off fa-4x"></i> -->
 		</div>
 		
 		<div ng-include="'partials/header.html'"></div>
@@ -30,8 +37,9 @@
 			    
 
 			    
-			    <md-grid-tile ng-repeat="tile in tiles | filter:visibility" 
+			    <md-grid-tile ng-repeat="tile in tiles" 
 			    	class="bg{{colorSet}}-{{tile.id % 5}}"
+
 			        md-rowspan="{{tile.rowspan}}" 
 			        md-colspan-sm="{{tile.colspansm || 1}}"
 			        md-rowspan-sm="{{tile.rowspansm || 1}}" 
@@ -135,6 +143,9 @@
 							    	</div>
 							    	<div>
 										<img title="HTML5" alt="HTML5" height="200" src="./assets/images/html5.png" />
+							    	</div>
+							    	<div>
+										<img title="SQL Server" alt="SQL Server" height="200" src="./assets/images/sqlserver.png" />
 							    	</div>
 							    </slick>
 							</div>

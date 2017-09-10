@@ -83,7 +83,7 @@
   margin-bottom: 80px; }
 
 .margin-right-80 {
-  margin-right: 80px !important; }
+  margin-right: 80px; }
 
 .padding-0 {
   padding: 0 !important; }
@@ -562,7 +562,7 @@ md-grid-tile-footer {
 
 @media (max-width: 767px) {
   h4 {
-    font-size: 10px !important; }
+    font-size: 16px !important; }
   .class .fa {
     font-size: 5em !important; } }
 
@@ -793,7 +793,7 @@ md-grid-tile {
   min-height: 100px;
   max-height: 100px;
   background: #ddd;
-  z-index: 9999;
+  z-index: 9998;
   overflow: hidden; }
 
 .progressIndicator {
@@ -804,9 +804,9 @@ md-grid-tile {
       background-color: #652415; }
 
 .switch {
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 10px;
-  z-index: 2;
+  z-index: 9999;
   outline: none;
   margin-right: 5px; }

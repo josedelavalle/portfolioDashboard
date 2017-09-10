@@ -182,7 +182,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 	$scope.setColor = function(i) {
 		$scope.colorSet = i;
 	}
-	var defaultTiles= [[{ id: 1, title: '0', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2 },
+	var defaultTiles= [[{ id: 1, title: '0', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2, hiddenxs: true },
 						{ id: 3, title: '2', fontcolor: '#ddd', footer: 'Compare and contrast country populations', rowspan: 2, colspan: 3, colspanxs: 2, rowspanxs: 4, colspansm: 2 },
                         { id: 4, title: '1', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1, colspanxs: 1},
                         { id: 5, title: '4', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 3, colspanxs: 1, colspansm: 1 },
@@ -191,7 +191,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
                         ],
 						[{ id: 6, title: '0', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2  },
 						{ id: 7, title: '1', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 3, colspanxs: 2, colspansm: 2 },
-						{ id: 9, title: '3', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspansm: 2, colspanxs: 2, rowspansm: 2, rowspanxs: 2 },
+						{ id: 9, title: '3', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspansm: 2, colspanxs: 2, rowspansm: 2, rowspanxs: 4 },
                         { id: 10, title: '2', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1},
                         { id: 8, title: '2', fontcolor: '#ddd', footer: 'Places to find me', rowspan: 1, colspan: 1},
 						{ id: 22, title: '4', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, span: 'Peak at photos taken anywhere in the world.  Select a destination and let her rip', hidden: true}],
