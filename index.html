@@ -29,6 +29,7 @@
 		</div>
 		
 		<div ng-include="'partials/header.html'"></div>
+		
 		<div id="main" ng-if="showmain">
 			<md-grid-list md-cols-xs="2" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
 		        md-row-height-gt-md="1:1" md-row-height="2:2"
@@ -48,7 +49,7 @@
 			        md-colspan="{{tile.colspan}}" ng-if="!tile.hidden">
 			        <div ng-class="{'contact-container': tile.id==3}" style="color: {{tile.fontcolor}}">
 				        <h2 ng-if="tile.id==1 || tile.id==6 || tile.id==12 || tile.id == 16 || tile.id == 23">
-				        	<div class="col-xs-12 controls" ng-click="toggleInterval()">
+				        	<div id="controls" class="col-xs-12 controls" ng-click="toggleInterval()">
 		                                <i ng-if="!isGoing" class="fa fa-play"></i>
 		                                <i ng-if="isGoing" class="fa fa-pause"></i>
 		                    </div>
@@ -100,12 +101,15 @@
 							</div>
 				        </div>
 				        <div ng-if="tile.id==3">
-							<iframe class="iframe" src="http://ngpopulation.josedelavalle.com"></iframe>
+				        	
+				        	
+							<iframe id="iframe" class="iframe" src="http://ngpopulation.josedelavalle.com"></iframe>
 						</div>
 						<div ng-if="tile.id==11">
 							<iframe class="iframe" src="http://ngnews.josedelavalle.com"></iframe>
 						</div>
-						<div ng-if="tile.id==9">
+						<div ng-show="tile.id==9">
+						
 							<iframe class="iframe" src="http://nggallery.josedelavalle.com"></iframe>
 						</div>
 						<div ng-if="tile.id==19">
@@ -119,12 +123,12 @@
 								<span>{{tile.span}}</span>
 							</div>
 						</div>
-				        <div ng-if="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25">
+				        <div ng-show="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25">
 					        <div class="full-width full-height">
-								<ng-map id="map" map-initialized="onMapLoaded()">
+								<ng-map id="map" map-initialized="onMapLoaded()" zoom-to-include-markers="true">
 								  <directions
 						            origin="Bedminster, NJ"
-						            destination="{{userCoords}}">
+						            destination="{{userLocation.address}}">
 						          </directions>
 								</ng-map>
 							</div>
@@ -178,6 +182,7 @@
 	<script src="./node_modules/ngmap/build/scripts/ng-map.min.js"></script>
 	<script src="./node_modules/slick-carousel/slick/slick.js"></script>
     <script src="./node_modules/angular-slick-carousel/dist/angular-slick.min.js"></script>
+	
 	<script src="./assets/js/app.js"></script>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

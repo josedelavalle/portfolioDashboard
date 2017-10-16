@@ -58,9 +58,9 @@ app.directive('onDragEnd', function() {
 });
 app.controller('portfolioDashboardController', portfolioDashboardController);
 
-portfolioDashboardController.$inject = ['$scope', '$window', '$interval', '$timeout', 'pdFactory', '$mdMedia', '$mdColorPalette', 'NgMap'];
+portfolioDashboardController.$inject = ['$scope', '$window', '$interval', '$timeout', 'pdFactory', '$mdMedia', '$mdColorPalette', '$mdToast', 'NgMap'];
 
-function portfolioDashboardController($scope, $window, $interval, $timeout, pdFactory, $mdMedia, $mdColorPalette, NgMap) {
+function portfolioDashboardController($scope, $window, $interval, $timeout, pdFactory, $mdMedia, $mdColorPalette, $mdToast, NgMap) {
 	console.log('portfolio dashboard controller', Date());
 	var self = this, j= 0, counter = 0;
 	$scope.colorSet = 1;
@@ -74,6 +74,58 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 	// console.log('colors', $scope.colors);
 	$scope.clock = ""; // initialise the time variable
     $scope.tickInterval = 1000;//ms
+
+
+    var last = {
+      bottom: false,
+      top: true,
+      left: false,
+      right: true
+    };
+
+  $scope.toastPosition = angular.extend({},last);
+
+  $scope.getToastPosition = function() {
+    sanitizePosition();
+
+    return Object.keys($scope.toastPosition)
+      .filter(function(pos) { return $scope.toastPosition[pos]; })
+      .join(' ');
+  };
+
+  function sanitizePosition() {
+    var current = $scope.toastPosition;
+
+    if ( current.bottom && last.top ) current.top = false;
+    if ( current.top && last.bottom ) current.bottom = false;
+    if ( current.right && last.left ) current.left = false;
+    if ( current.left && last.right ) current.right = false;
+
+    last = angular.extend({},current);
+  }
+
+
+  var descriptions = [
+    'Add countries to the app in order to compare and contrast various country populations broken down by gender and age.',
+    'App will default to finding photos uploaded to Flckr taken at wherever you currently are in the world, or use the map to explore at your leasure.',
+    'Internet news from the top media sources collated all under one roof, just for you.  Read current articles from your favorite outlets homepage, in realtime.',
+    'Drill down to your desired US State to find county information, along with maps, and links to the official local government websites.',
+    'A website about me, what I do, what I have done, and what I could do in the future.  Thanks for visiting!'
+  ];
+  $scope.showSimpleToast = function(i) {
+    
+    var pinTo = $scope.getToastPosition();
+
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent(descriptions[i])
+        .parent('#main')
+        .position(pinTo )
+        .hideDelay(50000)
+    );
+  };
+    $scope.showSimpleToast(0);
+
     NgMap.getMap().then(function(map) {
         console.log(map.getCenter());
         console.log('markers', map.markers);
@@ -221,20 +273,21 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
         evt.initUIEvent('resize', true, false, $window, 0); 
         $window.dispatchEvent(evt);
       };
-    $interval(triggerResize, 300);
-    $scope.onMapLoaded = function () {
+    //$interval(triggerResize, 300);
+    $scope.onMapLoaded = function (latlng) {
         console.log('map loaded');
         var self = this;
         $timeout(triggerResize, 100);
         NgMap.getMap().then(function(map) {
           map.setOptions({draggable: true, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
-          map.getCenter();
+          //map.setCenter({lat: latlng[0], lng: latlng[1]});
         });
       };
 	$scope.defaultTiles = function() {
 		console.log('data set', $scope.dataSet)
 		$scope.tiles = defaultTiles[$scope.dataSet - 1];
         triggerResize();
+        $timeout($scope.showSimpleToast($scope.dataSet-1), 0);
 	};
 
 	$scope.goNext = function () {
