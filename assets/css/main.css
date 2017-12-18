@@ -606,6 +606,9 @@ md-grid-list {
 .shadowed {
   text-shadow: 1px 0px 2px #969696; }
 
+.slick-slide {
+  padding: 3em; }
+
 .slick {
   width: 100%;
   vertical-align: middle; }

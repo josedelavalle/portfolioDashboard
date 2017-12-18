@@ -121,16 +121,13 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
         .textContent(descriptions[i])
         .parent('#main')
         .position(pinTo )
-        .hideDelay(50000)
+        .hideDelay(7000)
     );
   };
     $scope.showSimpleToast(0);
 
     NgMap.getMap().then(function(map) {
-        console.log(map.getCenter());
-        console.log('markers', map.markers);
-        console.log('shapes', map.shapes);
-
+        
       });
 	pdFactory.getUserLocation().then(function(res) {
 		console.log('got user location', res);
@@ -280,7 +277,8 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
         $timeout(triggerResize, 100);
         NgMap.getMap().then(function(map) {
           map.setOptions({draggable: true, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
-          //map.setCenter({lat: latlng[0], lng: latlng[1]});
+          map.getCenter();
+          map.setCenter({lat: latlng[0], lng: latlng[1]});
         });
       };
 	$scope.defaultTiles = function() {
