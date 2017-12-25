@@ -117,38 +117,26 @@
 							</div>
 				        </div>
 				        
-				        <div ng-if="dataSet==1">
-					        <div ng-show="tile.id==3">
-								<iframe id="iframe" class="iframe" src="http://ngpopulation.josedelavalle.com"></iframe>
-							</div>
-						</div>
-						<div ng-if="dataSet==3">
-							<div ng-show="tile.id==11">
-								<iframe class="iframe" src="http://ngnews.josedelavalle.com"></iframe>
-							</div>
-						</div>
-						<div ng-if="dataSet==2">
-							<div ng-show="tile.id==9">
-								<iframe class="iframe" src="http://nggallery.josedelavalle.com"></iframe>
-							</div>
-						</div>
-						<div ng-if="dataSet==4">
-							<div ng-show="tile.id==19">
-								<iframe class="iframe" src="http://ngstates.josedelavalle.com"></iframe>
-							</div>
-						</div>
-						<div ng-if="dataSet==5">
-							<div ng-show="tile.id==26">
-								<iframe ng-if="showHeatmap" class="iframe" src="http://josedelavalle.com/#map"></iframe>
-								<iframe ng-if="!showHeatmap" class="iframe" src="http://josedelavalle.com"></iframe>
-							</div>
-						</div>
+				       
+					     
+						<iframe ng-if="tile.id==3" class="iframe" src="http://ngpopulation.josedelavalle.com"></iframe>
+					
+						<iframe ng-if="tile.id==11" class="iframe" src="http://ngnews.josedelavalle.com"></iframe>
+				
+						<iframe ng-if="tile.id==9" class="iframe" src="http://nggallery.josedelavalle.com"></iframe>
+							
+						<iframe ng-if="tile.id==19" class="iframe" src="http://ngstates.josedelavalle.com"></iframe>
+					
+						<iframe ng-if="tile.id==26 && showHeatmap" class="iframe" src="http://josedelavalle.com/#map"></iframe>
+
+						<iframe ng-if="tile.id==26 && !showHeatmap" class="iframe" src="http://josedelavalle.com"></iframe>
+						
 						<div ng-if="tile.id==24 || tile.id==22">
 							<div class="description">
 								<span>{{tile.span}}</span>
 							</div>
 						</div>
-				        <div ng-show="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25">
+				        <div ng-if="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25">
 					        <div class="full-width full-height">
 								<ng-map id="map" map-initialized="onMapLoaded(userLocation)" zoom-to-include-markers="true">
 								  <directions
