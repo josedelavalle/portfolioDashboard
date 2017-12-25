@@ -31,7 +31,7 @@
 		<div ng-include="'partials/header.html'"></div>
 		
 		<div id="main" ng-if="showmain">
-			<md-grid-list md-cols-xs="2" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
+			<md-grid-list md-cols-xs="2" md-cols-sm="2" md-cols-md="4" md-cols-lg="6" md-cols-gt-lg="8"
 		        md-row-height-gt-md="1:1" md-row-height="2:2"
 		        md-gutter="12px" md-gutter-gt-sm="10px" >
 
@@ -42,40 +42,56 @@
 			    	class="bg{{colorSet}}-{{tile.id % 5}}"
 
 			        md-rowspan="{{tile.rowspan}}" 
+			        md-colspan="{{tile.colspan}}"
+			        md-colspan-lg="{{tile.colspanlg || 1}}" 
+			        md-rowspan-lg="{{tile.rowspanlg	|| 1}}"
+			        md-colspan-md="{{tile.colspanmd || 1}}" 
+			        md-rowspan-md="{{tile.rowspanmd || 1}}"
 			        md-colspan-sm="{{tile.colspansm || 1}}"
 			        md-rowspan-sm="{{tile.rowspansm || 1}}" 
 			        md-colspan-xs="{{tile.colspanxs || 1}}"
 			        md-rowspan-xs="{{tile.rowspanxs || 1}}" 
-			        md-colspan="{{tile.colspan}}" ng-if="!tile.hidden">
-			        <div ng-class="{'contact-container': tile.id==3}" style="color: {{tile.fontcolor}}">
-				        <h2 ng-if="tile.id==1 || tile.id==6 || tile.id==12 || tile.id == 16 || tile.id == 23">
+			         ng-if="!tile.hidden">
+			        <div class="full-height full-width" style="color: {{tile.fontcolor}}">
+				        <div class="full-height full-width" ng-if="tile.id==1 || tile.id==6 || tile.id==12 || tile.id == 16 || tile.id == 23">
+							
+				        	
+				        	
+
 				        	<div id="controls" class="col-xs-12 controls" ng-click="toggleInterval()">
-		                                <i ng-if="!isGoing" class="fa fa-play"></i>
-		                                <i ng-if="isGoing" class="fa fa-pause"></i>
+		                        <div ng-class="isGoing ? 'fa-pause' : 'fa-play'" class="icon fa"></div>
 		                    </div>
-				        </h2>
-				        <div ng-if="tile.id==2 || tile.id==21 || tile.id==8 || tile.id==14">
-				        	<div class="grid2x2">
-							  <div class="box box1"><div>
+		                    <div class="circle-set">
+								<div style="color: {{set}}" ng-repeat="set in colorSets">
+				        			<i class="fa" ng-class="$index + 1 == colorSet ? 'fa-check-circle' : 'fa-circle'" ng-click="setColor($index + 1)"></i>
+				        		</div>
+							</div>
+				        </div>
+				        <div ng-if="tile.id==2 || tile.id==21 || tile.id==8 || tile.id==14" class="full-width full-height padding-bottom-50">
+				        	<div class="row half-row">
+				        		<div class="col-xs-6 full-height padding-right-0">
 									<a target="_blank" href="https://twitter.com/slickwebstudio">
-										<i class='fa fa-twitter'></i>
+										<i class='fa fa-twitter centered'></i>
 									</a>
-							  </div></div>
-							  <div class="box box2"><div>
-							  	<a target="_blank" href="http://github.com/josedelavalle"
-							  		<i class='fa fa-github'></i>
-							  	</a>
-							  </div></div>
-							  <div class="box box3"><div>
-							  	<a target="_blank" href="http://josedelavalle.com/#contact"
-							  		<i class='fa fa-envelope'></i>
-							  	</a>
-							  </div></div>
-							  <div class="box box4"><div>
-							  	<a target="_blank" href="https://www.linkedin.com/in/jose-delavalle-49aa7411a/">
-							  		<i class='fa fa-linkedin'></i>
-							  	</a>
-							  </div></div>
+							  	</div>
+							  	<div class="col-xs-6 full-height padding-left-0">
+							  		<a target="_blank" href="http://github.com/josedelavalle"
+							  		<i class='fa fa-github centered'></i>
+							  		</a>
+							  	</div>
+							</div>
+							  <div class="row half-row">
+							  	<div class="col-xs-6 full-height padding-right-0">
+							  		<a target="_blank" href="http://josedelavalle.com/#contact"
+							  			<i class='fa fa-envelope centered'></i>
+							  		</a>
+							  	</div>
+							  	<div class="col-xs-6 full-height padding-left-0">
+								  	<a target="_blank" href="https://www.linkedin.com/in/jose-delavalle-49aa7411a/">
+								  		<i class='fa fa-linkedin centered'></i>
+								  	</a>
+								</div>
+							  </div>
 							</div>
 
 				        	<div class="container-fluid carousel-container hidden">
@@ -100,23 +116,32 @@
 							    </h2>
 							</div>
 				        </div>
-				        <div ng-if="tile.id==3">
-				        	
-				        	
-							<iframe id="iframe" class="iframe" src="http://ngpopulation.josedelavalle.com"></iframe>
+				        
+				        <div ng-if="dataSet==1">
+					        <div ng-show="tile.id==3">
+								<iframe id="iframe" class="iframe" src="http://ngpopulation.josedelavalle.com"></iframe>
+							</div>
 						</div>
-						<div ng-if="tile.id==11">
-							<iframe class="iframe" src="http://ngnews.josedelavalle.com"></iframe>
+						<div ng-if="dataSet==3">
+							<div ng-show="tile.id==11">
+								<iframe class="iframe" src="http://ngnews.josedelavalle.com"></iframe>
+							</div>
 						</div>
-						<div ng-show="tile.id==9">
-						
-							<iframe class="iframe" src="http://nggallery.josedelavalle.com"></iframe>
+						<div ng-if="dataSet==2">
+							<div ng-show="tile.id==9">
+								<iframe class="iframe" src="http://nggallery.josedelavalle.com"></iframe>
+							</div>
 						</div>
-						<div ng-if="tile.id==19">
-							<iframe class="iframe" src="http://ngstates.josedelavalle.com"></iframe>
+						<div ng-if="dataSet==4">
+							<div ng-show="tile.id==19">
+								<iframe class="iframe" src="http://ngstates.josedelavalle.com"></iframe>
+							</div>
 						</div>
-						<div ng-if="tile.id==26">
-							<iframe class="iframe" src="http://josedelavalle.com"></iframe>
+						<div ng-if="dataSet==5">
+							<div ng-show="tile.id==26">
+								<iframe ng-if="showHeatmap" class="iframe" src="http://josedelavalle.com/#map"></iframe>
+								<iframe ng-if="!showHeatmap" class="iframe" src="http://josedelavalle.com"></iframe>
+							</div>
 						</div>
 						<div ng-if="tile.id==24 || tile.id==22">
 							<div class="description">
@@ -125,7 +150,7 @@
 						</div>
 				        <div ng-show="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25">
 					        <div class="full-width full-height">
-								<ng-map id="map" map-initialized="onMapLoaded()" zoom-to-include-markers="true">
+								<ng-map id="map" map-initialized="onMapLoaded(userLocation)" zoom-to-include-markers="true">
 								  <directions
 						            origin="Bedminster, NJ"
 						            destination="{{userLocation.address}}">
@@ -158,7 +183,7 @@
 					        <div>
 								<h3 class="md-grid-tile-footer">
 								<string class="shadowed hidden">{{tile.id}} - </string>
-								<strong class="shadowed">{{tile.footer}}</strong></h3>
+								<strong>{{tile.footer}}</strong></h3>
 					        </div>
 				        </md-grid-tile-footer>
 			      </div>

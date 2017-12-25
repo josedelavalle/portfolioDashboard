@@ -42,7 +42,7 @@ body {
 	//overflow: hidden;
 }
 a {
-	color: white !important;
+	color: unset !important;
 	text-decoration: none !important;
 	outline: none !important;
 }
@@ -50,6 +50,14 @@ md-grid-tile-footer {
 		background-color: rgba(0,0,0,0.5) !important;
 		font-size: 2em;
 	
+}
+.half-row {
+	height: 50%;
+	text-align: center;
+	
+	.fa {
+		font-size: 3em;
+	}
 }
 @include responsive(xs) {
 	h4 {
@@ -67,6 +75,15 @@ md-grid-tile-footer {
 		font-size: 18px !important;
 	}
 
+}
+@include responsive(md) {
+	h3 {
+		font-size: 19px !important;
+	}
+	.heatmap-link {
+		font-size: 18px !important;
+	}
+	
 }
 .centered {
 	position: relative;
@@ -111,6 +128,8 @@ md-grid-list {
 .slick {
 	width: 100%;
 	//margin: 0 auto 30px;
+	top: calc(50% - 20px);
+	margin-top: -50%;
 	vertical-align: middle;
 	//padding-top: 33%;
 	div {
@@ -160,17 +179,17 @@ md-toast {
 }
 .fa-pause, .fa-play, .carousel-container .fa {
 		@include responsive(xs) {
-			font-size: 3em !important;
+			font-size: 5em !important;
 			//margin: 20px 0;
 		}
 		@include responsive(sm) {
-			font-size: 3.5em !important;
+			font-size: 7.5em !important;
 		}
 		@include responsive(md) {
 			font-size: 4em !important;
 		}
 		@include responsive(lg) {
-			font-size: 6em !important;
+			font-size: 8em !important;
 		}
 		font-size: 20em;
 		margin: auto 0 48px !important;
@@ -271,7 +290,7 @@ md-toast {
 }
 md-grid-tile {
     transition: all 400ms ease-out 50ms;
-    transition: background-color 5000ms ease-out 50ms;
+    transition: background-color 1000ms ease-in-out 50ms;
 	//box-shadow: 0 0 2px 1px #555, 0 0 2px 1px #ddd;
 }
 
@@ -327,6 +346,7 @@ md-grid-tile {
 	  display: flex;
 	  flex-wrap: wrap;
 	  flex-direction: row;
+	  //padding-bottom: 20px;
 	  @include responsive(xs) {
 			font-size: 2.5em !important;
 			//margin: 20px 0;
@@ -354,7 +374,13 @@ md-grid-tile {
 	  flex-direction: row;
 	}
 
-	.box { margin: 10px; }
+	.box { 
+		margin: 10px;
+
+		.fa {
+			font-size: 0.8em;
+		}
+	}
 	
 
 
@@ -391,8 +417,29 @@ md-grid-tile {
 	background: $light-grey;
 	z-index: 9998;
 	overflow: hidden;
+	
+	.fa {
+		font-size: 25px;
+	}
+	.fa-github {
+		color: $text-color;
+	}
+	.slider-controls {
+		.fa {
+			margin-top: -10px;
+			font-size: 60px;
+		}
+	}
+	
 }
+.md-grid-tile-footer {
+	margin-right: 16px;
+}
+#main {
+	max-height: calc(100vh - 90px);
+	//min-: 100vh;
 
+}
 .progressIndicator {
 	z-index: 3;
 	.md-container {
@@ -409,4 +456,41 @@ md-grid-tile {
 	z-index: 9999;
 	outline: none;
 	margin-right: 5px;
+}
+.heatmap-link {
+	font-size: 20px;
+	color: $text-color;
+}
+
+.circle-set {
+	i {
+		font-size: 1.8em;
+	}
+	div {
+		padding: 5px;
+		margin: auto;
+	}
+	position: absolute;
+	top: 0;
+	display: inline;
+	display: flex;
+	width: 100%;
+	height: 50px;
+	flex-direction: row;
+	transition: all 0.5s both ease-in-out;
+}
+#controls {
+	height: calc(100% - 50px);
+	margin-top: 50px;
+	padding-bottom: 50px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: calc(100% - 50px);
+
+	.icon {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%); 
+		margin: auto !important;
+	}
 }

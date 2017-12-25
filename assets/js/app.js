@@ -69,12 +69,13 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 	$scope.userLocation = {};
 	$scope.userCoords = null;
 	$scope.showmain = true;
-    $scope.isGoing = true;
+    $scope.isGoing = false;
 	// $scope.colors = Object.keys($mdColorPalette);
 	// console.log('colors', $scope.colors);
 	$scope.clock = ""; // initialise the time variable
     $scope.tickInterval = 1000;//ms
 
+    $scope.colorSets = ['#46aeb4','#5383bc','#7f7bca','#EEEEEE','#953b4f'];
 
     var last = {
       bottom: false,
@@ -109,7 +110,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
     'Add countries to the app in order to compare and contrast various country populations broken down by gender and age.',
     'App will default to finding photos uploaded to Flckr taken at wherever you currently are in the world, or use the map to explore at your leasure.',
     'Internet news from the top media sources collated all under one roof, just for you.  Read current articles from your favorite outlets homepage, in realtime.',
-    'Drill down to your desired US State to find county information, along with maps, and links to the official local government websites.',
+    'Drill down to your desired US State to find interactive county results.  Explore photos taken at that location, along with maps, and links to the official local government websites.',
     'A website about me, what I do, what I have done, and what I could do in the future.  Thanks for visiting!'
   ];
   $scope.showSimpleToast = function(i) {
@@ -127,7 +128,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
     $scope.showSimpleToast(0);
 
     NgMap.getMap().then(function(map) {
-        
+        map.getCenter();
       });
 	pdFactory.getUserLocation().then(function(res) {
 		console.log('got user location', res);
@@ -231,35 +232,36 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 	$scope.setColor = function(i) {
 		$scope.colorSet = i;
 	}
-	var defaultTiles= [[{ id: 1, title: '0', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2, hiddenxs: true },
-						{ id: 3, title: '2', fontcolor: '#ddd', footer: 'Compare and contrast country populations', rowspan: 2, colspan: 3, colspanxs: 2, rowspanxs: 4, colspansm: 2 },
-                        { id: 4, title: '1', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1, colspanxs: 1},
-                        { id: 5, title: '4', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 3, colspanxs: 1, colspansm: 1 },
-						{ id: 2, title: '3', fontcolor: '#ddd', footer: 'Places to find me', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2 },
-                        { id: 24, title: '3', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, span: 'Add countries to compare their populations based on gender and increasing age.', hidden: true },
-                        ],
-						[{ id: 6, title: '0', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2  },
-						{ id: 7, title: '1', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 3, colspanxs: 2, colspansm: 2 },
-						{ id: 9, title: '3', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspansm: 2, colspanxs: 2, rowspansm: 2, rowspanxs: 4 },
-                        { id: 10, title: '2', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1},
-                        { id: 8, title: '2', fontcolor: '#ddd', footer: 'Places to find me', rowspan: 1, colspan: 1},
-						{ id: 22, title: '4', fontcolor: '#ddd', footer: '', rowspan: 1, colspan: 1, span: 'Peak at photos taken anywhere in the world.  Select a destination and let her rip', hidden: true}],
-						[{ id: 11, title: '1', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspanxs: 2, colspansm: 2, rowspanxs: 3, rowspansm: 2},
-						{ id: 12, title: '4', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2 },
-						{ id: 13, title: '1', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1 },
-						{ id: 14, title: '2', fontcolor: '#ddd', footer: 'Places to find me', rowspan: 1, colspan: 1 },
-						{ id: 15, title: '3', fontcolor: '#ddd', data: 'states', footer: 'How far you are from me', colspanxs: 2, colspansm: 2, rowspan: 1, colspan: 3 }],
-						[{ id: 16, title: '0', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2 },
-                        { id: 19, title: '3', fontcolor: '#ddd', footer: '', rowspan: 2, colspan: 3, colspansm: 2, colspanxs: 2, rowspansm: 2, rowspanxs: 2 },
-                        { id: 17, title: '1', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1 },
-                        { id: 18, title: '2', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 3, colspansm: 1, colspanxs: 1 },
-                        { id: 21, title: '0', fontcolor: '#ddd', data: '', footer: 'Places to find me', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2 },
-                        { id: 20, title: '0', fontcolor: '#ddd', data: '', footer: '', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2, hidden: true }],
-						[{ id: 23, title: '0', fontcolor: '#ddd', footer: 'Toggle color changes', rowspan: 1, colspan: 1 },
+	var defaultTiles= [[{ id: 1, title: '0', footer: 'Color controls', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2, hiddenxs: true },
+						{ id: 3, title: '2', footer: 'Compare and contrast country populations', rowspan: 3, colspan: 7, colspanxs: 2, rowspanxs: 4, colspanmd: 3, rowspanmd: 2, colspanlg: 5, rowspanlg: 3,colspansm: 2, rowspansm: 3 },
+                        { id: 4, title: '1', footer: 'Some technologies used', rowspan: 2, colspan: 1, colspanxs: 1, rowspanxs: 1, rowspansm: 1, rowspanmd: 1, rowspanlg: 2},
+                        { id: 24, title: '3', footer: '', rowspan: 1, colspan: 1, span: '', hidden: true },
+                        { id: 5, title: '4', footer: 'How far you are from me', rowspan: 1, colspan: 6, colspanxs: 1, colspansm: 1, colspanmd: 3, colspanlg: 5 },
+						{ id: 2, title: '3', footer: 'Places to find me', rowspan: 1, colspan: 2, colspansm: 2, colspanxs: 2, colspanmd: 1 }
                         
-                        { id: 27, title: '4', fontcolor: '#ddd', footer: 'Some technologies used', rowspan: 1, colspan: 1 },
-                        { id: 25, title: '2', fontcolor: '#ddd', footer: 'How far you are from me', rowspan: 1, colspan: 2, colspansm: 2, colspanxs: 2 },
-                        { id: 26, title: '3', fontcolor: '#ddd', footer: '', rowspan: 3, colspan: 4, colspansm: 2, colspanxs: 2, rowspansm: 4, rowspanxs: 4 }]
+                        ],
+						[{ id: 6, title: '0', footer: 'Color controls', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2  },
+						{ id: 7, title: '1', footer: 'How far you are from me', rowspan: 1, colspan: 7, colspanmd: 3, colspanlg: 5, colspanxs: 2, colspansm: 2 },
+						{ id: 9, title: '3', footer: '', rowspan: 3, colspan: 7, colspanlg: 5, rowspanlg: 3, colspanmd: 3, rowspanmd: 2, colspansm: 2, colspanxs: 2, rowspansm: 2, rowspanxs: 4 },
+                        { id: 10, title: '2', footer: 'Some technologies used', rowspan: 2, rowspanmd: 1, rowspansm: 1, rowspanxs: 1, rowspanlg: 2, rowspanmd: 2, colspan: 1},
+                        { id: 8, title: '2', footer: 'Places to find me', rowspan: 1, colspan: 1, rowspanlg: 1, rowspansm: 1, rowspanxs: 1 },
+						{ id: 22, title: '4', footer: '', rowspan: 3, colspan: 1, span: 'Peak at photos taken anywhere in the world.  Select a destination and let her rip', hidden: true}],
+						[{ id: 11, title: '1', footer: '', rowspan: 3, colspan: 7, colspanlg: 5, rowspanlg: 3, rowspanmd: 2, colspanmd: 3, colspanxs: 2, colspansm: 2, rowspanxs: 3, rowspansm: 2},
+						{ id: 12, title: '4', footer: 'Color controls', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2 },
+						{ id: 13, title: '1', footer: 'Some technologies used', rowspan: 1, colspan: 1, rowspanlg: 2 },
+						{ id: 14, title: '2', footer: 'Places to find me', rowspan: 1, colspan: 1 },
+						{ id: 15, title: '3', data: 'states', footer: 'How far you are from me', colspanxs: 2, colspansm: 2, rowspan: 1, colspan: 8, colspanmd: 3, colspanlg: 5 }],
+						[{ id: 16, title: '0', footer: 'Color controls', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2 },
+                        { id: 19, title: '3', footer: '', rowspan: 3, colspan: 7, colspansm: 2, colspanxs: 2, rowspansm: 2, rowspanxs: 2, colspanmd: 3, rowspanmd: 2, colspanlg: 5, rowspanlg: 3 },
+                        { id: 17, title: '1', footer: 'Some technologies used', rowspan: 2, colspan: 1, rowspanlg: 2},
+                        { id: 18, title: '2', footer: 'How far you are from me', rowspan: 1, colspan: 7, colspanlg: 4, colspansm: 1, colspanxs: 1, colspanmd: 3 },
+                        { id: 21, title: '0', data: '', footer: 'Places to find me', rowspan: 1, colspan: 1, colspanlg: 2, colspanxs: 2, colspansm: 2 },
+                        { id: 20, title: '0', data: '', footer: '', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2, hidden: true }],
+						[{ id: 23, title: '0', footer: 'Color controls', rowspan: 1, colspan: 1 },
+                        
+                        { id: 27, title: '4', footer: 'Some technologies used', rowspan: 1, colspan: 1 },
+                        { id: 25, title: '2', footer: 'How far you are from me', rowspan: 1, colspan: 6, colspanlg: 4, colspanmd: 2, colspansm: 2, colspanxs: 2 },
+                        { id: 26, title: '3', footer: '', rowspan: 3, colspan: 8, colspansm: 2, colspanxs: 2, colspanmd: 4, rowspanmd: 2, colspanlg: 6, rowspanlg: 3, rowspansm: 4, rowspanxs: 4 }]
 						
 						];
 				   
@@ -269,17 +271,25 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
         var evt = $window.document.createEvent('UIEvents'); 
         evt.initUIEvent('resize', true, false, $window, 0); 
         $window.dispatchEvent(evt);
+        
       };
-    //$interval(triggerResize, 300);
+    $interval(triggerResize, 300);
     $scope.onMapLoaded = function (latlng) {
-        console.log('map loaded');
+        console.log('map loaded', latlng);
         var self = this;
-        $timeout(triggerResize, 100);
+        
         NgMap.getMap().then(function(map) {
           map.setOptions({draggable: true, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+          $timeout(triggerResize, 1);
           map.getCenter();
-          map.setCenter({lat: latlng[0], lng: latlng[1]});
+          //map.setCenter({lat: latlng[0], lng: latlng[1]});
         });
+      };
+
+      $scope.setColor = function(i) {
+        console.log('set color', i);
+        $scope.colorSet = i;
+        if ($scope.isGoing) $scope.toggleInterval();
       };
 	$scope.defaultTiles = function() {
 		console.log('data set', $scope.dataSet)
@@ -287,7 +297,15 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
         triggerResize();
         $timeout($scope.showSimpleToast($scope.dataSet-1), 0);
 	};
-
+    $scope.toggleInfo = function() {
+        $scope.showSetNumbers = !$scope.showSetNumbers;
+        $scope.showSimpleToast($scope.dataSet - 1);
+    };
+    $scope.viewHeatmap = function() {
+        $scope.showHeatmap = true;
+        $scope.dataSet = 5;
+        $scope.defaultTiles();
+    };
 	$scope.goNext = function () {
         $scope.dataSet++;
         if ($scope.dataSet > defaultTiles.length) $scope.dataSet = 1;      
@@ -341,7 +359,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
     
     var timeoutLength = 5000;
     $scope.start = function () {
-        
+        $scope.isGoing = true;
         promise = $interval(function () {
 
             self.determinateValue += 1;
@@ -372,17 +390,17 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
     $scope.stop = function () {
         
         $interval.cancel(promise);
+        $scope.isGoing = false;
     };
     $scope.toggleInterval = function() {
-        console.log($scope.isGoing);
+        
         if ($scope.isGoing) {
-            $scope.isGoing = false;
             $scope.stop();
         } else {
-            $scope.isGoing = true;
             $scope.start();
         }
+        console.log($scope.isGoing);
     };
-    $scope.start();
+    //$scope.start();
     
 }

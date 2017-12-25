@@ -1,5 +1,9 @@
+md-grid-tile[class^="bg"] {
+	transition: all 1s both ease-in-out;
+	color: #fefefe;
+}
 .bg1-0 {
-	background: #222222;
+	background: #00563c;
 }
 .bg1-1 {
 	background: #3b3b3b;
@@ -8,7 +12,8 @@
 	background: #2b6669;
 }
 .bg1-3 {
-	background: #398a8e;
+	background: #46aede ;
+
 }
 .bg1-4 {
 	background: #46aeb4;
@@ -34,50 +39,56 @@
 }
 
 .bg3-0 {
-	background: #35825b;
+	background: #7f7bca;
 }
 .bg3-1 {
 	background: #424242;
 }
 .bg3-2 {
-	background: #43a874;
+	background: #a19ed9;
+	color: #424242;
 }
 .bg3-3 {
 	background: #292929;
 }
 .bg3-4 {
-	background: #5dc08d;
+	background: #5c57bb;
 }
 
 
 
 .bg4-0 {
-	background: #7f7bca;
+	background: #ffffff;
+	color: black !important;
 }
 .bg4-1 {
-	background: #565656;
+	background: #feffff;
+	color: black !important;
 }
 .bg4-2 {
-	background: #a19ed9;
+	background: #eeeeee;
+	color: black !important;
 }
 .bg4-3 {
-	background: #5c57bb;
+	background: #efefef;
+	color: black !important;
 }
 .bg4-4 {
-	background: #565656;
+	background: #fefefe;
+	color: black !important;
 }
 
 .bg5-0 {
 	background: #353535;
 }
 .bg5-1 {
-	background: #953b4f;
+	background: #3b3b3b;
 }
 .bg5-2 {
-	background: #BBC8CA;
+	background: #702e3c;
 }
 .bg5-3 {
-	background: #702e3c;
+	background: #703e3c;
 }
 .bg5-4 {
 	background: #b94a62;

@@ -5,14 +5,19 @@
 	  <div class="hidden-sm hidden-xs col-md-3">
 		<h3 class="padding-top-5 margin-top-10">
 		<div class="">Jose DeLavalle's Portfolio</div>
+
+		<div ng-click="viewHeatmap()">
+			<i class="fa fa-globe"></i>
+			<span class="heatmap-link">
+				Visitor Heatmap
+			</span>
+		</div>
 		<div>
 			<a target="_blank" href="https://github.com/josedelavalle/portfolioDashboard">
+				<i class="fa fa-github"></i>
 				<small>Check out code on Github</small>
 			</a>
 		</div>
-		<i class="fa fa-lightbulb-o hidden-md margin-top-5" ng-click="showSetNumbers=!showSetNumbers"></i>
-		<span ng-init="showSetNumbers=false" ng-show="showSetNumbers" class="info">dataset: {{dataSet}}, colorset: {{colorSet}}
-		</span>
 		</h3>
 	  </div>
 	  <div class="col-xs-12 col-md-6 text-center">
@@ -29,7 +34,7 @@
 		</h1>
 		<div class="row slider-controls">
 			<div class="col-xs-2">
-				<i class="fa fa-angle-left" ng-click="goPrev($parent.dataSet)"></i>
+				<i class="fa fa-angle-left pull-left" ng-click="goPrev($parent.dataSet)"></i>
 			</div>
 			<div class="col-xs-8">
 				<md-slider-container>
@@ -40,7 +45,7 @@
 			    </md-slider-container>
 			</div>
 			<div class="col-xs-2">
-				<i class="fa fa-angle-right" ng-click="goNext($parent.dataSet)"></i>
+				<i class="fa fa-angle-right pull-right" ng-click="goNext($parent.dataSet)"></i>
 			</div>
 		</div>
 		
@@ -48,12 +53,20 @@
 	  </div>	
 
 	  <div class="col-md-3 hidden-sm hidden-xs text-right">
-		<h3 class="padding-top-5 margin-top-10">
+		<h3 class="padding-top-5 margin-top-10 margin-bottom-0">
 		
-        <div class="hidden-sm hidden-xs">{{ clock | date:'EEE'}}&nbsp;{{ clock | date:'dd MMM'}}</div>
-        <small class="time">{{ clock | date:'shortTime'}}</small>
-
+	        <div class="hidden-sm hidden-xs">
+	        	{{ clock | date:'EEE'}}&nbsp;{{ clock | date:'dd MMM'}}
+	        </div>
+	        <small class="time">
+	        	{{ clock | date:'shortTime'}}
+	        </small><br>
+			<span ng-show="showSetNumbers" class="info">
+				dataset: {{dataSet}}, colorset: {{colorSet}}
+			</span>
+			<i class="fa fa-lightbulb-o margin-top-5" ng-click="toggleInfo()"></i>
 		</h3>
+		
 	  </div>
 	</div>
 	<div class="row">
