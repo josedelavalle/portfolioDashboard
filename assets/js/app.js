@@ -76,11 +76,29 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
     $scope.tickInterval = 1000;//ms
 
     $scope.colorSets = ['#46aeb4','#5383bc','#7f7bca','#EEEEEE','#953b4f'];
-
-    var last = {
+    $scope.techImages = [
+                        { src: './assets/images/angular.png',
+                          title: 'AngularJS'
+                        },
+                        { src: './assets/images/csharp.png',
+                          title: 'C#'
+                        },
+                        { src: './assets/images/html5.png',
+                          title: 'HTML5'
+                        },
+                        {
+                          src: './assets/images/sqlserver.png',
+                          title: 'SQL Server'
+                        },
+                        {
+                          src: './assets/images/css3.png',
+                          title: 'CSS3'
+                        }
+                        ];
+      var last = {
       bottom: false,
       top: true,
-      left: false,
+      left: true,
       right: true
     };
 
@@ -113,6 +131,20 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
     'Drill down to your desired US State to find interactive county results.  Explore photos taken at that location, along with maps, and links to the official local government websites.',
     'A website about me, what I do, what I have done, and what I could do in the future.  Thanks for visiting!'
   ];
+
+  $scope.showCustomToast = function(i) {
+        var data = { msg: descriptions[i] };
+        $mdToast.show({
+          hideDelay   : 10000,
+          position    : 'top center',
+          parent      : '#menu',
+          controller  : 'ToastCtrl',
+          templateUrl : '/partials/toast.html',
+          locals: {
+            data: data
+          }
+        });
+      };
   $scope.showSimpleToast = function(i) {
     
     var pinTo = $scope.getToastPosition();
@@ -120,12 +152,13 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
     $mdToast.show(
       $mdToast.simple()
         .textContent(descriptions[i])
-        .parent('#main')
-        .position(pinTo )
-        .hideDelay(7000)
+        .parent('#menu')
+        .position('top center' )
+        .hideDelay(10000)
     );
   };
-    $scope.showSimpleToast(0);
+    //$scope.showSimpleToast(0);
+    $scope.showCustomToast(0);
 
     NgMap.getMap().then(function(map) {
         map.getCenter();
@@ -295,11 +328,12 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 		console.log('data set', $scope.dataSet)
 		$scope.tiles = defaultTiles[$scope.dataSet - 1];
         triggerResize();
-        $timeout($scope.showSimpleToast($scope.dataSet-1), 0);
+        $timeout($scope.showCustomToast($scope.dataSet-1), 0);
 	};
     $scope.toggleInfo = function() {
         $scope.showSetNumbers = !$scope.showSetNumbers;
-        $scope.showSimpleToast($scope.dataSet - 1);
+        //$scope.showSimpleToast($scope.dataSet - 1);
+        $scope.showCustomToast($scope.dataSet - 1);
     };
     $scope.viewHeatmap = function() {
         $scope.showHeatmap = true;
@@ -403,4 +437,14 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
     };
     //$scope.start();
     
+}
+
+app.controller('ToastCtrl', ToastCtrl);
+ToastCtrl.$inject = ['$scope', '$mdToast', 'data'];
+function ToastCtrl($scope, $mdToast, data) {
+    console.log('toast controller', data);
+    $scope.data = data;
+    $scope.closeToast = function() {
+        $mdToast.hide();
+    };
 }

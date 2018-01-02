@@ -650,16 +650,19 @@ md-grid-list {
   .slick .fa {
     font-size: 1000%; }
 
-md-toast {
-  background: #ddd; }
-
-.md-toast-content {
-  background-color: #ddd !important; }
+md-toast, .md-toast-content {
+  background-color: white !important;
+  padding: 5px; }
 
 .md-toast-text {
-  background: #ddd;
   color: black;
   font-size: 1.2em; }
+
+.toast-close {
+  color: #652415;
+  position: absolute;
+  top: 5px;
+  right: 5px; }
 
 .fa-pause, .fa-play, .carousel-container .fa {
   font-size: 20em;
@@ -893,7 +896,10 @@ md-grid-tile {
 
 .circle-set {
   position: absolute;
+  max-width: 400px;
   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: inline;
   display: flex;
   width: 100%;
@@ -905,6 +911,12 @@ md-grid-tile {
   .circle-set div {
     padding: 5px;
     margin: auto; }
+
+md-toast.md-center {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto !important; }
 
 #controls {
   height: calc(100% - 50px);
