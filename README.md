@@ -12,6 +12,8 @@ Cycle through them with the slider at top/center
 
 4) The 50 US States, searchable, and with state flags.  Filter returned states with a fuzzy search.  Drill down to your desired state for iconic image of selected state with a list of counties within.  Further filter counties through input.  Button provided to display a Google Map at center (lat/long) of pertainable county.  Click on county name to open new tab with a redirection to that counties official website.
 
-5) A summary page of who I am, what I do (and done), and an inline form for sending me an email.  Feel free to drop me a line. =)
+5) Datepicker allows you to explore NASA's Pic of the Day API.  Also choose from MARS Rover Curiosity and Opportunity to see pictures from the Red Planet captured on that given day.  Satelite imagery is also available for an entered location (or defaulting to browser location).  Finally a Sound Cloud widget has been embedded to hear the sound of a probe entering Juniter's atmosphere.
+
+6) A summary page of who I am, what I do (and done), and an inline form for sending me an email.  Feel free to drop me a line. =)
 
 J.DeLavalle 20170904

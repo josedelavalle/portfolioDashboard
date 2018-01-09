@@ -29,7 +29,7 @@ app.factory('pdFactory', ['$http', '$window', '$q', function ($http, $window, $q
         },
         reverseGecode: function(loc) {
         	var thisUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + loc + '&components=administrative_area&key=AIzaSyAFzBg6EWivP2e2GR0DmXdosJKqJylV9AQ';
-        	console.log('reversegeocodeurl', thisUrl);
+        	//console.log('reversegeocodeurl', thisUrl);
             return $http.get(thisUrl);
         },
         getWeather: function(lat, lon, country) {
@@ -61,10 +61,11 @@ app.controller('portfolioDashboardController', portfolioDashboardController);
 portfolioDashboardController.$inject = ['$scope', '$window', '$interval', '$timeout', 'pdFactory', '$mdMedia', '$mdColorPalette', '$mdToast', 'NgMap'];
 
 function portfolioDashboardController($scope, $window, $interval, $timeout, pdFactory, $mdMedia, $mdColorPalette, $mdToast, NgMap) {
-	console.log('portfolio dashboard controller', Date());
+	console.log('portfolio dashboard controller - welcome to this console - me@josedelavalle.com', Date());
+
 	var self = this, j= 0, counter = 0;
-	$scope.colorSet = 1;
-	$scope.maxColorSets = 5;
+	$scope.colorSet = 2;
+	$scope.maxColorSets = 6;
 	$scope.dataSet = 1;
 	$scope.userLocation = {};
 	$scope.userCoords = null;
@@ -129,6 +130,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
     'App will default to finding photos uploaded to Flckr taken at wherever you currently are in the world, or use the map to explore at your leasure.',
     'Internet news from the top media sources collated all under one roof, just for you.  Read current articles from your favorite outlets homepage, in realtime.',
     'Drill down to your desired US State to find interactive county results.  Explore photos taken at that location, along with maps, and links to the official local government websites.',
+    'A Datepicker lets you check out the Pic of The Day from NASA, MARS Rover image history, satelite imagery for your desired location and more.',
     'A website about me, what I do, what I have done, and what I could do in the future.  Thanks for visiting!'
   ];
 
@@ -164,41 +166,41 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
         map.getCenter();
       });
 	pdFactory.getUserLocation().then(function(res) {
-		console.log('got user location', res);
+		//console.log('got user location', res);
 		var usercoords = res.coords.latitude + "," + res.coords.longitude;
 		$scope.userCoords = usercoords;
 		doReverseGeocode(usercoords);
 	}).catch(function(e) {
-		console.log('error getting user location', e);
+		//console.log('error getting user location', e);
 		pdFactory.getUserLocationBackup().then(function(res) {
-			console.log('got user location backup', res);
+			//console.log('got user location backup', res);
 			var usercoords = res.data.loc;
 			$scope.userCoords = usercoords;
 			doReverseGeocode(usercoords);
 		}).catch(function(e) {
-			console.log('error getting user location backup', e);
+			//console.log('error getting user location backup', e);
 		});
 	});
 
 	function doReverseGeocode(data) {
 		pdFactory.reverseGecode(data).then(function(res) {
-			console.log('reversegeocode', res);
+			//console.log('reversegeocode', res);
 			parseGeocode(res);
 			var loc = $scope.userCoords.split(',');
 			getWeather(loc[0], loc[1], $scope.userLocation.country);
 		}).catch(function(e) {
-			console.log('error reverse geocoding', e);
+			//console.log('error reverse geocoding', e);
 		});
 	}
 
 	function getWeather(lat, lon, country) {
 		pdFactory.getWeather(lat,lon,country).then(function(res) {
-			console.log('got weather', res);
+			//console.log('got weather', res);
 			$scope.userLocation.temperature = Math.trunc(res.data.main.temp);
             $scope.userLocation.icon = res.data.weather[0].icon;
-            console.log('---userlocation---', $scope.userLocation);
+            //console.log('---userlocation---', $scope.userLocation);
 		}).catch(function(e) {
-			console.log('error getting weather', e);
+			//console.log('error getting weather', e);
 		});
 	}
 
@@ -270,9 +272,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
                         { id: 4, title: '1', footer: 'Some technologies used', rowspan: 2, colspan: 1, colspanxs: 1, rowspanxs: 1, rowspansm: 1, rowspanmd: 1, rowspanlg: 2},
                         { id: 24, title: '3', footer: '', rowspan: 1, colspan: 1, span: '', hidden: true },
                         { id: 5, title: '4', footer: 'How far you are from me', rowspan: 1, colspan: 6, colspanxs: 1, colspansm: 1, colspanmd: 3, colspanlg: 5 },
-						{ id: 2, title: '3', footer: 'Places to find me', rowspan: 1, colspan: 2, colspansm: 2, colspanxs: 2, colspanmd: 1 }
-                        
-                        ],
+						{ id: 2, title: '3', footer: 'Places to find me', rowspan: 1, colspan: 2, colspansm: 2, colspanxs: 2, colspanmd: 1 }],
 						[{ id: 6, title: '0', footer: 'Color controls', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2  },
 						{ id: 7, title: '1', footer: 'How far you are from me', rowspan: 1, colspan: 7, colspanmd: 3, colspanlg: 5, colspanxs: 2, colspansm: 2 },
 						{ id: 9, title: '3', footer: '', rowspan: 3, colspan: 7, colspanlg: 5, rowspanlg: 3, colspanmd: 3, rowspanmd: 2, colspansm: 2, colspanxs: 2, rowspansm: 2, rowspanxs: 4 },
@@ -290,15 +290,20 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
                         { id: 18, title: '2', footer: 'How far you are from me', rowspan: 1, colspan: 7, colspanlg: 4, colspansm: 1, colspanxs: 1, colspanmd: 3 },
                         { id: 21, title: '0', data: '', footer: 'Places to find me', rowspan: 1, colspan: 1, colspanlg: 2, colspanxs: 2, colspansm: 2 },
                         { id: 20, title: '0', data: '', footer: '', rowspan: 1, colspan: 1, colspansm: 2, colspanxs: 2, hidden: true }],
+                        [{ id: 28, title: '0', footer: 'Color controls', rowspan: 1, colspan: 1, colspanxs: 2, colspansm: 2, hiddenxs: true },
+                        { id: 29, title: '2', footer: 'Explore outerspace from home', rowspan: 3, colspan: 7, colspanxs: 2, rowspanxs: 4, colspanmd: 3, rowspanmd: 2, colspanlg: 5, rowspanlg: 3,colspansm: 2, rowspansm: 3 },
+                        { id: 30, title: '1', footer: 'Some technologies used', rowspan: 2, colspan: 1, colspanxs: 1, rowspanxs: 1, rowspansm: 1, rowspanmd: 1, rowspanlg: 2},
+                        { id: 31, title: '3', footer: '', rowspan: 1, colspan: 1, span: '', hidden: true },
+                        { id: 32, title: '4', footer: 'How far you are from me', rowspan: 1, colspan: 6, colspanxs: 1, colspansm: 1, colspanmd: 3, colspanlg: 5 },
+                        { id: 33, title: '3', footer: 'Places to find me', rowspan: 1, colspan: 2, colspansm: 2, colspanxs: 2, colspanmd: 1 }],
 						[{ id: 23, title: '0', footer: 'Color controls', rowspan: 1, colspan: 1 },
-                        
                         { id: 27, title: '4', footer: 'Some technologies used', rowspan: 1, colspan: 1 },
                         { id: 25, title: '2', footer: 'How far you are from me', rowspan: 1, colspan: 6, colspanlg: 4, colspanmd: 2, colspansm: 2, colspanxs: 2 },
                         { id: 26, title: '3', footer: '', rowspan: 3, colspan: 8, colspansm: 2, colspanxs: 2, colspanmd: 4, rowspanmd: 2, colspanlg: 6, rowspanlg: 3, rowspansm: 4, rowspanxs: 4 }]
 						
 						];
 				   
-	console.log('default tiles', defaultTiles);
+	//console.log('default tiles', defaultTiles);
     var triggerResize = function () {
         //console.log('triggerresize');
         var evt = $window.document.createEvent('UIEvents'); 
@@ -308,24 +313,24 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
       };
     $interval(triggerResize, 300);
     $scope.onMapLoaded = function (latlng) {
-        console.log('map loaded', latlng);
+        //console.log('map loaded', latlng);
         var self = this;
         
-        NgMap.getMap().then(function(map) {
+        NgMap.getMap({id: 'map'}).then(function(map) {
           map.setOptions({draggable: true, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
-          $timeout(triggerResize, 1);
+          //$timeout(triggerResize, 1);
           map.getCenter();
           //map.setCenter({lat: latlng[0], lng: latlng[1]});
         });
       };
 
       $scope.setColor = function(i) {
-        console.log('set color', i);
+        //console.log('set color', i);
         $scope.colorSet = i;
         if ($scope.isGoing) $scope.toggleInterval();
       };
 	$scope.defaultTiles = function() {
-		console.log('data set', $scope.dataSet)
+		//console.log('data set', $scope.dataSet)
 		$scope.tiles = defaultTiles[$scope.dataSet - 1];
         triggerResize();
         $timeout($scope.showCustomToast($scope.dataSet-1), 0);
@@ -433,7 +438,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
         } else {
             $scope.start();
         }
-        console.log($scope.isGoing);
+        //console.log($scope.isGoing);
     };
     //$scope.start();
     
@@ -442,7 +447,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 app.controller('ToastCtrl', ToastCtrl);
 ToastCtrl.$inject = ['$scope', '$mdToast', 'data'];
 function ToastCtrl($scope, $mdToast, data) {
-    console.log('toast controller', data);
+    //console.log('toast controller', data);
     $scope.data = data;
     $scope.closeToast = function() {
         $mdToast.hide();

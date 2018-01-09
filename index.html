@@ -53,7 +53,7 @@
 			        md-rowspan-xs="{{tile.rowspanxs || 1}}" 
 			         ng-if="!tile.hidden">
 			        <div class="full-height full-width" style="color: {{tile.fontcolor}}">
-				        <div class="full-height full-width" ng-if="tile.id==1 || tile.id==6 || tile.id==12 || tile.id == 16 || tile.id == 23">
+				        <div class="full-height full-width" ng-if="tile.id==1 || tile.id==6 || tile.id==12 || tile.id == 16 || tile.id == 23 || tile.id == 28">
 							
 				        	
 				        	
@@ -67,7 +67,7 @@
 				        		</div>
 							</div>
 				        </div>
-				        <div ng-if="tile.id==2 || tile.id==21 || tile.id==8 || tile.id==14" class="full-width full-height padding-bottom-50">
+				        <div ng-if="tile.id==2 || tile.id==21 || tile.id==8 || tile.id==14 || tile.id==33" class="full-width full-height padding-bottom-50">
 				        	<div class="row half-row">
 				        		<div class="col-xs-6 full-height padding-right-0">
 									<a target="_blank" href="https://twitter.com/slickwebstudio">
@@ -126,6 +126,8 @@
 						<iframe ng-if="tile.id==9" class="iframe" src="http://nggallery.josedelavalle.com"></iframe>
 							
 						<iframe ng-if="tile.id==19" class="iframe" src="http://ngstates.josedelavalle.com"></iframe>
+
+						<iframe ng-if="tile.id==29" class="iframe" src="http://ngnasa.josedelavalle.com/#mars"></iframe>
 					
 						<iframe ng-if="tile.id==26 && showHeatmap" class="iframe" src="http://josedelavalle.com/#map"></iframe>
 
@@ -136,7 +138,7 @@
 								<span>{{tile.span}}</span>
 							</div>
 						</div>
-				        <div ng-if="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25">
+				        <div ng-if="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25 || tile.id==32">
 					        <div class="full-width full-height">
 								<ng-map id="map" map-initialized="onMapLoaded(userLocation)" zoom-to-include-markers="true">
 								  <directions
@@ -146,12 +148,12 @@
 								</ng-map>
 							</div>
 				        </div>
-						<div ng-show="tile.id==4 || tile.id==13 || tile.id == 17 || tile.id==10 || tile.id==27">
+						<div ng-show="tile.id==4 || tile.id==13 || tile.id == 17 || tile.id==10 || tile.id==27 || tile.id==30">
 							<div class="container-fluid carousel-container">
 								<slick class="slick" autoplay=true infinite=true slides-to-show=1 slides-to-scroll=1>
 							    	<div ng-repeat="item in techImages">
 							    		<div>
-											<img title="{{item.title}}" alt="{{item.title}}" height="200" src="{{item.src}}" />
+											<img title="{{item.title}}" alt="{{item.title}}" height="200" ng-src="{{item.src}}" />
 										</div>
 							    	</div>
 							    </slick>
