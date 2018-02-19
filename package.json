@@ -46,6 +46,7 @@
     "chartjs": "^0.3.24",
     "jquery": "^3.2.1",
     "ngmap": "^1.18.4",
+    "node-sass": "^4.7.2",
     "slick-carousel": "^1.6.0"
   }
 }

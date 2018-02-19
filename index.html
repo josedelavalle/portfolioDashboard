@@ -139,12 +139,20 @@
 							</div>
 						</div>
 				        <div ng-if="tile.id==7 || tile.id==5 || tile.id==15 || tile.id==18 || tile.id==25 || tile.id==32">
-					        <div class="full-width full-height">
+					        <div ng-if="userLocation.address" class="full-width full-height">
 								<ng-map id="map" map-initialized="onMapLoaded(userLocation)" zoom-to-include-markers="true">
-								  <directions
-						            origin="Bedminster, NJ"
-						            destination="{{userLocation.address}}">
-						          </directions>
+								    <directions
+						              origin="Bedminster, NJ"
+						              destination="{{userLocation.address}}">
+						            </directions>
+						            <custom-marker id="start"
+							          position="Bedminster, NJ">
+							          <div>Me</div>
+							        </custom-marker>
+							        <custom-marker id="end"
+							          position="{{userLocation.address}}">
+							          <div>You</div>
+							        </custom-marker>
 								</ng-map>
 							</div>
 				        </div>

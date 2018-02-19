@@ -25,7 +25,7 @@
 		<i ng-click="initTiles()" class="hidden margin-left-10 fa fa-refresh
 		"></i>
 
-		<h4 class="margin-bottom-0">{{userLocation.address}}
+		<h4 class="margin-bottom-0 user-location">{{userLocation.address}}
 			<span ng-if="userLocation.temperature">
                 <img class="weathericon" height="30" ng-src="http://openweathermap.org/img/w/{{userLocation.icon}}.png" />
                 {{userLocation.temperature}} &deg;{{userLocation.weatherUnit}}
@@ -38,14 +38,12 @@
 			</div>
 			<div class="col-xs-8">
 				<md-slider-container>
-			      <span></span>
-			      <md-slider on-drag-end flex min="1" max="{{maxColorSets}}" ng-model="$parent.dataSet" ng-change="console.log('asdf')" aria-label="red"  id="red-slider">
+			      <md-slider on-drag-end flex min="1" max="{{maxDataSets}}" ng-model="$parent.dataSet" ng-change="console.log('asdf')" aria-label="red"  id="red-slider">
 			      </md-slider>
-			      
 			    </md-slider-container>
 			</div>
 			<div class="col-xs-2">
-				<i class="fa fa-angle-right pull-right" ng-click="goNext($parent.dataSet)"></i>
+				<i id="next-button" class="fa fa-angle-right pull-right" ng-click="goNext($parent.dataSet)"></i>
 			</div>
 		</div>
 		
@@ -64,7 +62,7 @@
 			<span ng-show="showSetNumbers" class="info">
 				dataset: {{dataSet}}, colorset: {{colorSet}}
 			</span>
-			<i class="fa fa-lightbulb-o margin-top-5" ng-click="toggleInfo()"></i>
+			<i class="fa fa-info margin-top-5" ng-click="toggleInfo()"></i>
 		</h3>
 		
 	  </div>

@@ -51,6 +51,61 @@ md-grid-tile-footer {
 		font-size: 2em;
 	
 }
+md-progress-linear {
+	position: absolute !important;
+	bottom: 0;
+	left: 0;
+	height: 7px !important;
+	* {
+		height: 7px !important;
+	}
+}
+.custom-marker {
+	div {
+		font-size: 2em;
+	    padding: 10px;
+	    background: #fff;
+	    // -webkit-border-radius: 4px;
+	    // -moz-border-radius: 4px;
+	    // border-radius: 4px;
+	    border: #7F7F7F solid 1px;
+	    text-align: center;
+	    color: black;
+	}
+	&:after {
+		content: '';
+	    position: absolute;
+	    border-style: solid;
+	    border-width: 7px 6px 0;
+	    border-color: #fff transparent;
+	    display: block;
+	    width: 0;
+	    z-index: 1;
+	    margin-left: -6px;
+	    bottom: -6px;
+	    left: 50%;
+	}
+	&:before {
+		content: '';
+	    position: absolute;
+	    border-style: solid;
+	    border-width: 7px 6px 0;
+	    border-color: #7F7F7F transparent;
+	    display: block;
+	    width: 0;
+	    z-index: 0;
+	    margin-left: -6px;
+	    bottom: -7px;
+	    left: 50%;
+	}
+}
+.gmnoprint {
+	img {
+		display: none;
+	}
+}
+
+
 .half-row {
 	height: 50%;
 	text-align: center;
@@ -218,6 +273,17 @@ md-toast, .md-toast-content {
 }
 .info {
 	font-size: 15px;
+}
+.toast {
+	h3 {
+		color: $text-color;
+		border-top: 1px solid $main-color;
+		padding-top: 10px;
+		margin: 10px 0 5px;
+	}
+}
+.user-location {
+	min-height: 30px;
 }
 .description {
 	@include responsive(xs) {
@@ -493,6 +559,7 @@ md-toast.md-center {
 	right: 0;
 	//left: 50%;
 	margin: auto !important;
+	
 	//transform: translate3d(-50%, 0, 0);
 	//transform: translateX(-50%); 
 }

@@ -65,7 +65,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 
 	var self = this, j= 0, counter = 0;
 	$scope.colorSet = 2;
-	$scope.maxColorSets = 6;
+	$scope.maxColorSets = 5;
 	$scope.dataSet = 1;
 	$scope.userLocation = {};
 	$scope.userCoords = null;
@@ -96,7 +96,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
                           title: 'CSS3'
                         }
                         ];
-      var last = {
+    var last = {
       bottom: false,
       top: true,
       left: true,
@@ -126,42 +126,48 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 
 
   var descriptions = [
-    'Add countries to the app in order to compare and contrast various country populations broken down by gender and age.',
-    'App will default to finding photos uploaded to Flckr taken at wherever you currently are in the world, or use the map to explore at your leasure.',
+    'Add countries to the app in order to compare and contrast various country populations broken down by year, gender, and age.',
+    'App will default to finding photos uploaded to Flckr taken at wherever you currently are in the world, use the map to explore at your leasure, or simply type in what you are looking for.',
     'Internet news from the top media sources collated all under one roof, just for you.  Read current articles from your favorite outlets homepage, in realtime.',
     'Drill down to your desired US State to find interactive county results.  Explore photos taken at that location, along with maps, and links to the official local government websites.',
     'A Datepicker lets you check out the Pic of The Day from NASA, MARS Rover image history, satelite imagery for your desired location and more.',
     'A website about me, what I do, what I have done, and what I could do in the future.  Thanks for visiting!'
   ];
 
-  $scope.showCustomToast = function(i) {
-        var data = { msg: descriptions[i] };
-        $mdToast.show({
-          hideDelay   : 10000,
-          position    : 'top center',
-          parent      : '#menu',
-          controller  : 'ToastCtrl',
-          templateUrl : '/partials/toast.html',
-          locals: {
-            data: data
-          }
-        });
-      };
-  $scope.showSimpleToast = function(i) {
+  $scope.showCustomToast = function(i, parent) {
+    var data;
+    if (typeof i == 'number') {
+        data = { msg: descriptions[i] };    
+    } else {
+        data = i;
+    }
+
+    $mdToast.show({
+      hideDelay   : 10000,
+      position    : 'top center',
+      parent      : parent,
+      controller  : 'ToastCtrl',
+      templateUrl : '/partials/toast.html',
+      locals: {
+        data: data
+      }
+    });
+  };
+  $scope.showSimpleToast = function(data) {
     
     var pinTo = $scope.getToastPosition();
 
     $mdToast.show(
       $mdToast.simple()
-        .textContent(descriptions[i])
-        .parent('#menu')
+        .textContent(data)
+        .parent('#next-button')
         .position('top center' )
         .hideDelay(10000)
     );
   };
     //$scope.showSimpleToast(0);
-    $scope.showCustomToast(0);
-
+    $scope.showCustomToast(0, '#menu');
+    //$scope.showSimpleToast('Click here to view another app');
     NgMap.getMap().then(function(map) {
         map.getCenter();
       });
@@ -302,7 +308,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
                         { id: 26, title: '3', footer: '', rowspan: 3, colspan: 8, colspansm: 2, colspanxs: 2, colspanmd: 4, rowspanmd: 2, colspanlg: 6, rowspanlg: 3, rowspansm: 4, rowspanxs: 4 }]
 						
 						];
-				   
+	$scope.maxDataSets = defaultTiles.length;
 	//console.log('default tiles', defaultTiles);
     var triggerResize = function () {
         //console.log('triggerresize');
@@ -317,7 +323,7 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
         var self = this;
         
         NgMap.getMap({id: 'map'}).then(function(map) {
-          map.setOptions({draggable: true, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+          map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
           //$timeout(triggerResize, 1);
           map.getCenter();
           //map.setCenter({lat: latlng[0], lng: latlng[1]});
@@ -333,16 +339,16 @@ function portfolioDashboardController($scope, $window, $interval, $timeout, pdFa
 		//console.log('data set', $scope.dataSet)
 		$scope.tiles = defaultTiles[$scope.dataSet - 1];
         triggerResize();
-        $timeout($scope.showCustomToast($scope.dataSet-1), 0);
+        $timeout($scope.showCustomToast($scope.dataSet-1, '#menu'), 0);
 	};
     $scope.toggleInfo = function() {
         $scope.showSetNumbers = !$scope.showSetNumbers;
         //$scope.showSimpleToast($scope.dataSet - 1);
-        $scope.showCustomToast($scope.dataSet - 1);
+        $scope.showCustomToast($scope.dataSet - 1, '#menu');
     };
     $scope.viewHeatmap = function() {
         $scope.showHeatmap = true;
-        $scope.dataSet = 5;
+        $scope.dataSet = 6;
         $scope.defaultTiles();
     };
 	$scope.goNext = function () {
